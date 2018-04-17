@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+<<<<<<< HEAD
+  <installed facet="jst.utility" version="1.0"/>
+=======
+  <fixed facet="wst.jsdt.web"/>
+  <installed facet="jst.web" version="2.3"/>
+  <installed facet="wst.jsdt.web" version="1.0"/>
+>>>>>>> branch 'master' of https://github.com/hnfsonw/com.patent.git
+  <installed facet="java" version="1.8"/>
+</faceted-project>

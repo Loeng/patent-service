@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<parent>
+		<groupId>com-patent</groupId>
+		<artifactId>guet.patent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>com-patent-easemob</artifactId>
+	<packaging>jar</packaging>
+	<description>环信模块</description>
+
+	<dependencies>
+		<!-- 环信通讯依赖 -->
+		<dependency>
+			<groupId>com.easemob</groupId>
+			<artifactId>rest-java-sdk</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!-- 环信通讯依赖 -->
+	</dependencies>
+
+</project>

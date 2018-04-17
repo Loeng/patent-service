@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xml>
+
+<toolbox>
+	<!-- velocity 自定义标签 -->
+	<tool>
+	    <key>shiro</key>
+	    <scope>application</scope>
+	    <class>io.patent.shiro.VelocityShiro</class>
+	</tool>
+</toolbox>

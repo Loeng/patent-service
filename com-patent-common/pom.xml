@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<<<<<<< HEAD
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com-patent</groupId>
+		<artifactId>guet.patent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>com-patent-common</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>com-patent</groupId>
+			<artifactId>com-patent-easemob</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com-patent</groupId>
+			<artifactId>com-patent-http</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.8</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.8</version>
+		</dependency>
+		
+	</dependencies>
+	<description>公共模块</description>
+=======
+
+
+	<parent>
+		<groupId>com-patent</groupId>
+		<artifactId>guet.patent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>com-patent-api</artifactId>
+	<packaging>jar</packaging>
+	<description>API接口模块</description>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com-patent</groupId>
+			<artifactId>com-patent-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>com-patent-api</finalName>
+	</build>
+	
+	
+>>>>>>> branch 'master' of https://github.com/hnfsonw/com.patent.git
+</project>
