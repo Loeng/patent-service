@@ -4,6 +4,7 @@
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
   http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
   version="3.1"  metadata-complete="false">
+  
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -31,6 +32,7 @@
 	    <filter-class>org.patent.api.web.filter.GzipFilter</filter-class>
 	    <async-supported>true</async-supported>
 	</filter>
+	
 	<filter-mapping>
 	    <filter-name>gzipFilter</filter-name>
 	    <url-pattern>/*</url-pattern>

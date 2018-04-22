@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE xml>
-
-
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -23,6 +20,7 @@
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
+		<!-- json解析和转换的库 -->
             <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -52,13 +50,13 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/api/**" />
-			<ref bean="authorizationInterceptor" />
+			<ref bean="authorizationInterceptor" />  <!-- 主要是验证token,往系统中写日志 -->
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
 	<!-- SpringMVC文件上传大小过滤 50M-->
 	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"><!-- 上传文件所需要的依赖包 -->
 		<property name="maxUploadSize" value="52428800" />
 	</bean>
 	<!-- SpringMVC文件上传大小过滤 -->

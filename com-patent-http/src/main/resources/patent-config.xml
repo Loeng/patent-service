@@ -12,7 +12,7 @@
      	http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	
-	<!-- Http-Plugin-holder -->
+	<!-- Http-holder -->
 	<bean class="org.patent.http.HttpClientHolder" init-method="init" destroy-method="dispose" factory-method="custom">
 	</bean>
 </beans>
