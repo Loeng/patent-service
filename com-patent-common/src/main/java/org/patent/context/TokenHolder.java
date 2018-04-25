@@ -1,6 +1,7 @@
 package org.patent.context;
 
 
+import org.com.patent.redis.JedisHolder;
 import org.patent.entity.TokenEntity;
 //import io.watch.hgts.redis.plugin.JedisHolder;
 

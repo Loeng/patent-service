@@ -7,8 +7,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.easemob.server.api.impl.EasemobSendMessage;
-import io.watch.context.LocationIndexHolder;
+import org.easemob.server.api.impl.EasemobSendMessage;
+//import io.watch.context.LocationIndexHolder;
 
 public class EasemobHolder extends Thread {
   private static final Logger LOGGER = LoggerFactory.getLogger(EasemobHolder.class);

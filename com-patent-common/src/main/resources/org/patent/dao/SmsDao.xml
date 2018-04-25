@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 映射到相应的dao.java文件 -->
+<mapper namespace="org.patent.dao">
+
+	<!-- 声明查询命令的名称和返回的类型 -->
+	<select id="queryByMobile" resultType="org.patent.entity.SmsEntity">
+		<!-- 这里写相应的sql语句 -->
+		select * from Sms where mobile = #{mobile}
+	</select>
+
+	<!-- parameterType为输入参数 -->
+	<!-- useGeneratedKeys设置是否使用JDBC的getGenereatedKeys方法获取主键并赋值到keyProperty设置的领域模型属性中。 -->
+	<!-- keyProperty 主键 -->
+	<insert id="save" parameterType="org.patent.entity.SmsEntity"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into Sms(
+		'mobile','code','expire_time','uodate_time'
+		)values(
+		#{mobile},#{code},#{expire_time},#{uodate_time}
+		)
+	</insert>
+	
+	
+
+</mapper>

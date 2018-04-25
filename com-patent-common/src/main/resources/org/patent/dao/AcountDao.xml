@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.patent.dao.AcountDao">
+
+	<!-- resultMap 可以将以一个查询到复杂结果映射到一个对象结果集中 -->
+	<!-- column="表的一个字段（可以为任意表的一个字段）" jdbcType="字段类型" property="映射到pojo对象的一个属性（须为type定义的pojo对象中的一个属性）" -->
+	<resultMap type="org.patent.entity.AcountEntity" id="acountMap">
+		<result property="acountId" column="acountId" />
+		<result property="acountName" column="acountName" />
+		<result property="nickName" column="nickName" />
+		<result property="password" column="password" />
+		<result property="phone" column="phone" />
+		<result property="imgUrl" column="imgUrl" />
+		<result property="lastLongTime" column="lastLongTime" />
+		<result property="createTime" column="createTime" />
+	</resultMap>
+
+	<select id="queryObject" resultType="org.patent.entity.AcountEntity">
+		select
+		'acountId',
+		'acountName',
+		'nickName',
+		'password',
+		'phone',
+		'imgUrl',
+		'lastLongTime',
+		'createTime'
+		from Acount where acountId=#{value}
+	</select>
+
+	<select id="queryByAcountName" resultType="org.patent.entity.AcountEntity">
+		select
+		'acountId',
+		'acountName',
+		'nickName',
+		'password',
+		'phone',
+		'imgUrl',
+		'lastLongTime',
+		'createTime'
+		from Acount where acountName=#{mobile}
+	</select>
+
+	<insert id="save" parameterType="org.patent.entity.AcountEntity"
+		useGeneratedKeys="true" keyProperty="acountId">
+		insert into Acount(
+		'acountId',
+		'acountName',
+		'nickName',
+		'password',
+		'phone',
+		'imgUrl',
+		'lastLongTime',
+		'createTime'
+		)values(
+		#{acountId},
+		#{acountName},
+		#{nickName},
+		#{password},
+		#{phone},
+		#{imgUrl},
+		#{lastLongTime},
+		#{createTime}
+		)
+	</insert>
+
+	<update id="update" parameterType="org.patent.entity.AcountEntity">
+		update Acount
+		<set>
+			<if test="acountName != null"> 'acountName'=#{acountName},</if>
+			<if test="nickName != null"> 'nickName'=#{nickName},</if>
+			<if test="password != null"> 'password'=#{password},</if>
+			<if test="phone != null"> 'phone'=#{phone},</if>
+			<if test="imgUrl != null"> 'imgUrl'=#{imgUrl},</if>
+			<if test="lastLongTime != null"> 'lastLongTime'=#{lastLongTime},</if>
+			<if test="createTime != null"> 'createTime'=#{createTime}</if>
+		</set>
+		where acountId=#{acountId}
+	</update>
+
+	<update id="updateByAcountName" parameterType="org.patent.entity.AcountEntity">
+		update Acount
+		<set>
+			<if test="nickName != null"> 'nickName'=#{nickName},</if>
+			<if test="password != null"> 'password'=#{password},</if>
+			<if test="phone != null"> 'phone'=#{phone},</if>
+			<if test="imgUrl != null"> 'imgUrl'=#{imgUrl},</if>
+			<if test="lastLongTime != null"> 'lastLongTime'=#{lastLongTime},</if>
+			<if test="createTime != null"> 'createTime'=#{createTime}</if>
+		</set>
+		where acountName=#{acountName}
+	</update>
+
+	<delete id="delete">
+		delete from Acount where acountId=#{value}
+	</delete>
+	
+	
+	
+</mapper>
+

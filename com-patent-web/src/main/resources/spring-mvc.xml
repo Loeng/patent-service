@@ -62,23 +62,23 @@
 	<!-- SpringMVC文件上传大小过滤 -->
 	
 	<!-- 环信消息过滤链层 -->
-	 <bean id="easemobHolder" class="org.patent.easemob.ext.EasemobHolder" factory-method="custom" init-method="init" destroy-method="dispose">
+	<!--  <bean id="easemobHolder" class="org.patent.easemob.ext.EasemobHolder" factory-method="custom" init-method="init" destroy-method="dispose">
 	        <property name="filters">
-	              <list>
+	              <list> -->
 	                  <!-- 按此顺序加载过滤 -->
 	                  <!-- 历史消息拆分 -->
-	                  <bean class="org.patent.easemob.filter.MessageWarperFilter"/>
+	                <!--  <bean class="org.patent.easemob.filter.MessageWarperFilter"/>-->
 	                  <!-- 发送前处理历史消息  -->
-	                  <bean class="org.patent.easemob.filter.HojyHisotryMessageFilter"/>
+	           <!--       <bean class="org.patent.easemob.filter.HojyHisotryMessageFilter"/>-->  
 	                  <!-- 发送成功后,处理历史消息  -->
-	                  <bean class="org.patent.easemob.filter.EaseCmdMessageFilter"/>
+	<!--               <bean class="org.patent.easemob.filter.EaseCmdMessageFilter"/>
 	              </list>
-	        </property>
+	        </property> -->    
 	        
 	        
 	    <!--      <property name="senderListener">
 	            <bean class="io.watch.mqtt.plugin.HojyMqttSenderListener"/>
 	        </property>-->
-	 </bean>
-	 
+<!--  	 </bean>  -->
+	
 </beans>
