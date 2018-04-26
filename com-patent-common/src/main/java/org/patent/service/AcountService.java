@@ -58,6 +58,6 @@ public interface AcountService {
 	 * @param id 账号id
  	 * @param mobile 手机号码
 	 */
-	void delectAcountAcountByAcountIdOrMobile(Long id,String mobile);
+	void delectAcountByAcountIdOrMobile(Long id,String mobile);
 	
 }

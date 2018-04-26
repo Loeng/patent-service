@@ -7,6 +7,7 @@ import org.patent.dao.AcountDao;
 import org.patent.entity.AcountEntity;
 import org.patent.service.AcountService;
 import org.patent.utils.ApiResultCode;
+import org.patent.utils.IMUtil;
 import org.patent.validator.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -56,6 +57,17 @@ public class AcountServiceImpl implements AcountService{
 		Assert.isNotNull(acountDao.queryByAcountName(acountName), ApiResultCode.ACCOUNT_IS_REGISTER,ApiResultCode.ACCOUNT_IS_REGISTER_CODE);
 		
 		//去环信创建账号
+		Object imObject = null;
+		try {
+			imObject = IMUtil.createIMUser(acountName, password);
+		} catch (Exception e) {
+			//如果环信报异常，就去删除这条数据
+			IMUtil.deleteIMUser(acountName);
+		}
+		if (imObject == null) {
+			//如果环信创建账户失败，去删除这条数据
+			IMUtil.deleteIMUser(acountName);
+		}
 		
 		//在自己的服务器创建账号
 		AcountEntity acountEntity = new AcountEntity();
@@ -73,9 +85,9 @@ public class AcountServiceImpl implements AcountService{
 	}
 
 	@Override
-	public void delectAcountAcountByAcountIdOrMobile(Long id, String mobile) {
-		// TODO Auto-generated method stub
-		
+	public void delectAcountByAcountIdOrMobile(Long id, String mobile) {
+		acountDao.delete(id);
+		IMUtil.deleteIMUser(mobile);
 	}
 
 }

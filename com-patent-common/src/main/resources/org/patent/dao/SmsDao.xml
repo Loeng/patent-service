@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 映射到相应的dao.java文件 -->
-<mapper namespace="org.patent.dao">
+<mapper namespace="org.patent.dao.SmsDao">
 
 	<!-- 声明查询命令的名称和返回的类型 -->
 	<select id="queryByMobile" resultType="org.patent.entity.SmsEntity">

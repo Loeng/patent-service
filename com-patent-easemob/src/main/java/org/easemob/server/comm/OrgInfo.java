@@ -25,7 +25,7 @@ public class OrgInfo {
 		} catch (IOException e) {
 			logger.error(e.getMessage());
 		}
-		ORG_NAME = prop.getProperty("ORG_NAME");
+		ORG_NAME = prop.getProperty("ORG_NAME"); 
 		APP_NAME = prop.getProperty("APP_NAME");
 	}
 }
