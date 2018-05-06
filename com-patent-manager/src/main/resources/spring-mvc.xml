@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -12,7 +11,7 @@
      	http://www.springframework.org/schema/aop  
      	http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/mvc 
-		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+		http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 		
 	<context:component-scan base-package="org.patent" />
 	<context:annotation-config />
@@ -100,25 +99,6 @@
 	</bean>
 	<!-- SpringMVC文件上传大小过滤 -->
 	
-	<!-- 环信消息过滤链层 -->
-	 <bean id="easemobHolder" class="org.patent.easemob.ext.EasemobHolder" factory-method="custom" init-method="init" destroy-method="dispose">
-	        <property name="filters">
-	              <list>
-	                  <!-- 按此顺序加载过滤 -->
-	                  <!-- 历史消息拆分 -->
-	                  <bean class="org.patent.easemob.filter.MessageWarperFilter"/>
-	                  <!-- 发送前处理历史消息  -->
-	                  <bean class="org.patent.easemob.filter.HojyHisotryMessageFilter"/>
-	                  <!-- 发送成功后,处理历史消息  -->
-	                  <bean class="org.patent.easemob.filter.EaseCmdMessageFilter"/>
-	              </list>
-	        </property>
-	        
-	        
-	    <!--      <property name="senderListener">
-	            <bean class="io.watch.mqtt.plugin.HojyMqttSenderListener"/>
-	        </property>-->
-	 </bean>
 	 
 	 <!--导入device数据-->
 	 <!-- 

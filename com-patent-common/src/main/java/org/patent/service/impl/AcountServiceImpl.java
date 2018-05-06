@@ -6,6 +6,7 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.patent.dao.AcountDao;
 import org.patent.entity.AcountEntity;
 import org.patent.service.AcountService;
+import org.patent.utils.ApiRRException;
 import org.patent.utils.ApiResultCode;
 import org.patent.utils.IMUtil;
 import org.patent.validator.Assert;
@@ -80,14 +81,29 @@ public class AcountServiceImpl implements AcountService{
 	}
 
 	@Override
-	public void updateAcountInfoByAcountName(AcountEntity acount) {
-		acountDao.updateByAcountName(acount);
+	public void updateAcountInfo(AcountEntity acount) {
+		acountDao.update(acount);
 	}
 
 	@Override
 	public void delectAcountByAcountIdOrMobile(Long id, String mobile) {
 		acountDao.delete(id);
 		IMUtil.deleteIMUser(mobile);
+	}
+
+	@Override
+	public AcountEntity queryByMobile(String mobile) {
+		return acountDao.queryByAcountName(mobile);
+	}
+
+	@Override
+	public int update(AcountEntity acountEntity) {
+		//修改密码的时候也需要把环信的密码一起修改
+		if (IMUtil.modifyIMUserPasswordWithAdminToken(acountEntity.getAcountName(), acountEntity.getPassword()) == null) {
+			throw new ApiRRException(ApiResultCode.CHANGE_IM_PASSWORD_FAILUE, ApiResultCode.CHANGE_IM_PASSWORD_FAILUE_CODE);
+		}
+		acountEntity.setPassword(new Sha256Hash().toHex());
+		return acountDao.update(acountEntity);
 	}
 
 }

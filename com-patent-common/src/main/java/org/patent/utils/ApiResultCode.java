@@ -16,6 +16,8 @@ public class ApiResultCode {
   public final static int FAILUE_ERROR_CODE = 90000;
 
   // 公共部分异常
+  public static int TOKEN_IS_EMPTY = 20001;
+  public static String TOKEN_IS_EMPTY_MSG = "token为空";
   public final static int INPUT_ERROR_CODE = 90001;
   public final static String INPUT_ERROR = "入参类型异常";
   public final static int DATA_FORMART_ERROR_CODE = 90002;

@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import io.swagger.client.model.Msg;
 import io.swagger.client.model.MsgContent;
+import io.swagger.client.model.NewPassword;
 import io.swagger.client.model.MsgContent.TypeEnum;
 import io.swagger.client.model.Nickname;
 import io.swagger.client.model.RegisterUsers;
@@ -45,7 +46,17 @@ public class IMUtil {
 		users.add(new IMUser().nickName(REGISTER_NICK).username(username).password(password));
 		return easemobIMUsers.createNewIMUserSingle(users);
 	}	
-	
+
+	/**
+	 * 修改环信用户的密码
+	 * @param userName
+	 * @param password
+	 * @return 实体类
+	 */
+	public static Object modifyIMUserPasswordWithAdminToken(String userName, String password) {
+		return easemobIMUsers.modifyIMUserPasswordWithAdminToken(userName, new NewPassword().newpassword(password));
+	}
+
 	/**
 	 * 在环信上通过用户名删除一个用户
 	 * @param username
@@ -54,8 +65,8 @@ public class IMUtil {
 	public static final Object deleteIMUser(String username) {
 		return easemobIMUsers.deleteIMUserByUserName(username);
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param fromUser  发送者
@@ -73,7 +84,7 @@ public class IMUtil {
 		myMsg.from(fromUser).target(userName).targetType("users").msg(msgContent);
 		return easemobSendMessage.sendMessage(myMsg);//发送消息
 	}
-	
+
 	/**
 	 * 通过用户名修改环信昵称
 	 * @param username 
@@ -85,7 +96,7 @@ public class IMUtil {
 		nickname2.setNickname(nickname);
 		return easemobIMUsers.modifyIMUserNickNameWithAdminToken(username, nickname2);
 	}
-	
+
 	/**
 	 * 获取用户是否在线
 	 * @param username
@@ -100,5 +111,5 @@ public class IMUtil {
 		}
 		return "0";
 	}
-	
+
 }

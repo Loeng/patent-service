@@ -21,6 +21,20 @@ public interface AcountService {
 	AcountEntity queryObject(Long acountId);
 	
 	/**
+	 * 更新密码
+	 * @param acountEntity
+	 * @return
+	 */
+	int update(AcountEntity acountEntity);
+	
+	/**
+	 * 通过手机号查询账号信息
+	 * @param mobile
+	 * @return
+	 */
+	AcountEntity queryByMobile(String mobile);
+	
+	/**
 	 * 根据条件查询账号列表
 	 * @param map 查询条件
 	 * @return
@@ -51,7 +65,7 @@ public interface AcountService {
 	 * 账号
 	 * @param acount
 	 */
-	void updateAcountInfoByAcountName(AcountEntity acount);
+	void updateAcountInfo(AcountEntity acount);
 
 	/**
 	 * 根据id删除账户，根据手机号删除id

@@ -149,7 +149,7 @@ public class JedisHolder {
 
   public static void main(String[] args) {
     List<JedisAddress> list = new LinkedList<JedisAddress>();
-    list.add(new JedisAddress("172.18.5.55", 6379));
+    list.add(new JedisAddress("127.0.0.1", 6379));
     JedisHolder.custom().setAddressInfo(list);
     JedisHolder.custom().setTemplate(new SimpleJedisTemplate());
     JedisHolder.custom().setPubSubModle(false);

@@ -24,7 +24,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+	<listener>
+	    <listener-class>org.patent.api.web.filter.LogbackContextListener</listener-class>
+	</listener>
 	
 	<!-- 配置GZIP压缩 可以直接删除-->
 	<filter>
