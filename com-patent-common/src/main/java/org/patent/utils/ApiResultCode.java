@@ -101,7 +101,7 @@ public class ApiResultCode {
   public final static int CHECKCODE_IS_EMPTY_CODE = 90302;
   public final static String CHECKCODE_IS_EMPTY = "验证码不允许为空";
   public final static int PHONE_IS_ERROR_CODE = 90303;
-  public final static String PHONE_IS_ERROR = "号码格式错误";
+  public final static String PHONE_IS_ERROR = "号码格式错误:)";
   public final static int SEND_SMS_ERROR_CODE = 90304;
   public final static String SEND_SMS_ERROR = "发送短信验证码失败";
   public final static int CHECKCODE_IS_ERROR_CODE = 90305;

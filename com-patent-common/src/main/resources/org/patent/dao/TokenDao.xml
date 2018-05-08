@@ -14,10 +14,10 @@
 
 	<insert id="save" parameterType="org.patent.entity.TokenEntity">
 		insert into Token(
-		'acountId',
-		'token',
-		'expir_time',
-		'update_time'
+		`acountId`,
+		`token`,
+		`expir_time`,
+		`update_time`
 		)values(
 		#{acountId},
 		#{token},
@@ -29,9 +29,9 @@
 	<update id="update" parameterType="org.patent.entity.TokenEntity">
 		update Token
 		<set>
-			<if test="token != null">'token'=#{token},</if>
-			<if test="expireTime != null">'expir_time'=#{expireTime},</if>
-			<if test="updateTime != null">'update_time'=#{updateTime}</if>
+			<if test="token != null">`token`=#{token},</if>
+			<if test="expireTime != null">`expir_time`=#{expireTime},</if>
+			<if test="updateTime != null">`update_time`=#{updateTime}</if>
 		</set>
 	</update>
 

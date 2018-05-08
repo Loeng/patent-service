@@ -15,6 +15,7 @@ import org.patent.service.TokenService;
 import org.patent.utils.ApiRRException;
 import org.patent.utils.ApiResult;
 import org.patent.utils.ApiResultCode;
+import org.patent.utils.DateUtil;
 import org.patent.utils.RRException;
 import org.patent.utils.RegexUtils;
 import org.patent.validator.Assert;
@@ -63,10 +64,10 @@ public class ApiAcountController {
 		String password = request.getParameter("password");
 		String code = request.getParameter("code");
 
-		Assert.isBlank(mobile, ApiResultCode.ACCOUNT_IS_EMPTY, ApiResultCode.ACCOUNT_IS_EMPTY_CODE);getClass();
+		Assert.isBlank(mobile, ApiResultCode.ACCOUNT_IS_EMPTY, ApiResultCode.ACCOUNT_IS_EMPTY_CODE);
 		Assert.isBlank(password, ApiResultCode.PASSWORD_IS_EMPTY, ApiResultCode.PASSWORD_IS_EMPTY_CODE);
 		Assert.isBlank(code, ApiResultCode.CHECKCODE_IS_EMPTY, ApiResultCode.CHECKCODE_IS_EMPTY_CODE);
-		if (RegexUtils.checkMobile(mobile)) {
+		if (!RegexUtils.checkMobile(mobile)) {
 			throw new ApiRRException(ApiResultCode.PHONE_IS_ERROR, ApiResultCode.PHONE_IS_ERROR_CODE);
 		}
 

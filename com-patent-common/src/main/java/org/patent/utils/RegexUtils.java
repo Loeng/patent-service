@@ -37,12 +37,12 @@ public class RegexUtils {
    * @return 验证成功返回true，验证失败返回false
    */
   public static boolean checkMobile(String mobile) {
-	String regex = "^[1][3-9]\\d{9}$|^([6|9])\\d{7}$|^[0][9]\\d{8}$|^[6]([8|6])\\d{5}$";
+	String regex = "^1[0-9]{10}$";
     return Pattern.matches(regex, mobile);
   }
   
   public static void main(String[] args) {
-    System.out.println(checkMobile("+8618764960759"));
+//    System.out.println(checkMobile("+8618764960759"));
   }
 
   /**

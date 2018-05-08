@@ -15,11 +15,21 @@
 	<!-- keyProperty 主键 -->
 	<insert id="save" parameterType="org.patent.entity.SmsEntity"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into Sms(
-		'mobile','code','expire_time','uodate_time'
-		)values(
-		#{mobile},#{code},#{expire_time},#{uodate_time}
+		insert into Sms
+		(
+			`mobile`, 
+			`code`, 
+			`expire_time`, 
+			`update_time`
 		)
+		values
+		(
+			#{mobile}, 
+			#{code}, 
+			#{expireTime}, 
+			#{updateTime}
+		)
+		
 	</insert>
 	
 	

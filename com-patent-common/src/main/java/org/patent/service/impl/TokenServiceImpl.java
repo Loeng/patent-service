@@ -12,7 +12,9 @@ import org.patent.entity.AcountEntity;
 import org.patent.entity.TokenEntity;
 import org.patent.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service("tokenService")
 public class TokenServiceImpl implements TokenService{
 
 	@Autowired
@@ -51,7 +53,7 @@ public class TokenServiceImpl implements TokenService{
 		
 		//是否生成果token
 		TokenEntity tokenEntity = tokendao.queryTokenByAcountId(acountId);
-		if (token == null) {
+		if (tokenEntity == null) {
 			tokenEntity = new TokenEntity();
 			tokenEntity.setAcountId(acountId);
 			tokenEntity.setToken(token);

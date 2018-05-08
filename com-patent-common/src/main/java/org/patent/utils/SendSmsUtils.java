@@ -87,8 +87,8 @@ public class SendSmsUtils {
 		PostMethod method = new PostMethod(Url);
 		client.getParams().setContentCharset("GBK");
 		method.setRequestHeader("ContentType", "application/x-www-form-urlencoded;charset=GBK");
-		//生成六位随机验证码
-		int mobile_code = (int) ((Math.random() * 9 + 1) * 100000);
+		//生成四位随机验证码
+		int mobile_code = (int) ((Math.random() * 9 + 1) * 1000);
 		String content = new String("您的验证码是：" + mobile_code + "。请不要把验证码泄露给其他人。");
 
 		NameValuePair[] data = {new NameValuePair("account", account),
@@ -96,7 +96,7 @@ public class SendSmsUtils {
 				new NameValuePair("mobile", mobile),
 				new NameValuePair("content", content),};
 		method.setRequestBody(data);
-		HashMap<String, Object> smsMap = new HashMap<>();
+		HashMap<String, Object> smsMap = new HashMap<String,Object>();
 		try {
 			client.executeMethod(method);
 			String SubmitResult = method.getResponseBodyAsString();
@@ -123,9 +123,11 @@ public class SendSmsUtils {
 				smsMap.put("smsMsg", smsMsg);
 				smsMap.put("smsContent", content);
 			}
-			logger.info("发送短信验证" + mobile + ";时间：" + CommonUtil.formatDateToString(new Date(), CommonUtil.DATE_TYPE_YMD_HMS));
+			System.out.println("你好");
+		      logger.info("发送短信验证" + mobile + ";时间：" + CommonUtil.formatDateToString(new Date(), CommonUtil.DATE_TYPE_YMD_HMS));
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return smsMap;
 	}

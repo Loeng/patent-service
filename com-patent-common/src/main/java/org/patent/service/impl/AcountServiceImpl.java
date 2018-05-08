@@ -11,6 +11,8 @@ import org.patent.utils.ApiResultCode;
 import org.patent.utils.IMUtil;
 import org.patent.validator.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sun.tools.javac.util.List;
 import com.sun.xml.internal.xsom.impl.scd.Iterators.Map;
@@ -21,6 +23,7 @@ import com.sun.xml.internal.xsom.impl.scd.Iterators.Map;
  *
  */
 
+@Service("acountService")
 public class AcountServiceImpl implements AcountService{
 	
 	@Autowired
@@ -96,6 +99,7 @@ public class AcountServiceImpl implements AcountService{
 		return acountDao.queryByAcountName(mobile);
 	}
 
+	@Transactional
 	@Override
 	public int update(AcountEntity acountEntity) {
 		//修改密码的时候也需要把环信的密码一起修改

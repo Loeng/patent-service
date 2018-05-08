@@ -13,6 +13,8 @@ import org.patent.utils.ApiResultCode;
 import org.patent.utils.RegexUtils;
 import org.patent.utils.SendSmsUtils;
 import org.patent.validator.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class ApiCheckCode {
+	  private static final Logger logger = LoggerFactory.getLogger(ApiCheckCode.class);
 
 	@Autowired
 	private SmsService smsService;
@@ -34,7 +37,7 @@ public class ApiCheckCode {
 	@RequestMapping("/sendCheackCode")
 	public ApiResult sendCheckCode(HttpServletRequest request) {
 		String mobile = request.getParameter("mobile");
-		Assert.isBlank(mobile, ApiResultCode.PHONE_IS_ERROR,ApiResultCode.PHONE_IS_ERROR_CODE);
+		Assert.isBlank(mobile, ApiResultCode.PHONENUM_IS_EMPTY_MSG,ApiResultCode.PHONENUM_IS_EMPTY_CODE);
 		if (!RegexUtils.checkMobile(mobile)) {
 			throw new ApiRRException(ApiResultCode.PHONE_IS_ERROR, ApiResultCode.PHONE_IS_ERROR_CODE);
 		}
@@ -50,6 +53,8 @@ public class ApiCheckCode {
 		}else {
 			throw new ApiRRException(ApiResultCode.SEND_SMS_ERROR, ApiResultCode.SEND_SMS_ERROR_CODE);
 		}
+		
+		
 	}
 	
 }

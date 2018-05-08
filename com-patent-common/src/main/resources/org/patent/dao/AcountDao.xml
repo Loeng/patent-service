@@ -18,42 +18,45 @@
 
 	<select id="queryObject" resultType="org.patent.entity.AcountEntity">
 		select
-		'acountId',
-		'acountName',
-		'nickName',
-		'password',
-		'phone',
-		'imgUrl',
-		'lastLongTime',
-		'createTime'
+		`acountId`,
+		`acountName`,
+		`nickName`,
+		`password`,
+		`phone`,
+		`imgUrl`,
+		`lastLongTime`,
+		`createTime`
 		from Acount where acountId=#{value}
 	</select>
 
 	<select id="queryByAcountName" resultType="org.patent.entity.AcountEntity">
 		select
-		'acountId',
-		'acountName',
-		'nickName',
-		'password',
-		'phone',
-		'imgUrl',
-		'lastLongTime',
-		'createTime'
+		`acountId`,
+		`acountName`,
+		`nickName`,
+		`password`,
+		`phone`,
+		`imgUrl`,
+		`lastLongTime`,
+		`createTime`
 		from Acount where acountName=#{mobile}
 	</select>
 
 	<insert id="save" parameterType="org.patent.entity.AcountEntity"
 		useGeneratedKeys="true" keyProperty="acountId">
-		insert into Acount(
-		'acountId',
-		'acountName',
-		'nickName',
-		'password',
-		'phone',
-		'imgUrl',
-		'lastLongTime',
-		'createTime'
-		)values(
+		insert into Acount
+		(
+		`acountId`,
+		`acountName`,
+		`nickName`,
+		`password`,
+		`phone`,
+		`imgUrl`,
+		`lastLongTime`,
+		`createTime`
+		)
+		values
+		(
 		#{acountId},
 		#{acountName},
 		#{nickName},
@@ -68,13 +71,13 @@
 	<update id="update" parameterType="org.patent.entity.AcountEntity">
 		update Acount
 		<set>
-			<if test="acountName != null"> 'acountName'=#{acountName},</if>
-			<if test="nickName != null"> 'nickName'=#{nickName},</if>
-			<if test="password != null"> 'password'=#{password},</if>
-			<if test="phone != null"> 'phone'=#{phone},</if>
-			<if test="imgUrl != null"> 'imgUrl'=#{imgUrl},</if>
-			<if test="lastLongTime != null"> 'lastLongTime'=#{lastLongTime},</if>
-			<if test="createTime != null"> 'createTime'=#{createTime}</if>
+			<if test="acountName != null"> `acountName`=#{acountName},</if>
+			<if test="nickName != null"> `nickName`=#{nickName},</if>
+			<if test="password != null"> `password`=#{password},</if>
+			<if test="phone != null"> `phone`=#{phone},</if>
+			<if test="imgUrl != null"> `imgUrl`=#{imgUrl},</if>
+			<if test="lastLongTime != null"> `lastLongTime`=#{lastLongTime},</if>
+			<if test="createTime != null"> `createTime`=#{createTime}</if>
 		</set>
 		where acountId=#{acountId}
 	</update>
@@ -82,12 +85,12 @@
 	<update id="updateByAcountName" parameterType="org.patent.entity.AcountEntity">
 		update Acount
 		<set>
-			<if test="nickName != null"> 'nickName'=#{nickName},</if>
-			<if test="password != null"> 'password'=#{password},</if>
-			<if test="phone != null"> 'phone'=#{phone},</if>
-			<if test="imgUrl != null"> 'imgUrl'=#{imgUrl},</if>
-			<if test="lastLongTime != null"> 'lastLongTime'=#{lastLongTime},</if>
-			<if test="createTime != null"> 'createTime'=#{createTime}</if>
+			<if test="nickName != null"> `nickName`=#{nickName},</if>
+			<if test="password != null"> `password`=#{password},</if>
+			<if test="phone != null"> `phone`=#{phone},</if>
+			<if test="imgUrl != null"> `imgUrl`=#{imgUrl},</if>
+			<if test="lastLongTime != null"> `lastLongTime`=#{lastLongTime},</if>
+			<if test="createTime != null"> `createTime`=#{createTime}</if>
 		</set>
 		where acountName=#{acountName}
 	</update>
@@ -95,7 +98,7 @@
 	<delete id="delete">
 		delete from Acount where acountId=#{value}
 	</delete>
-	
-	
+
+
 </mapper>
 
