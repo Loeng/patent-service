@@ -2,10 +2,6 @@ package org.patent.utils;
 
 /**
  * 常量
- * 
- * @author liuwf
- * @email liuwf@hojy.com
- * @date 2017-03-23 22:02
  */
 public class Constant {
 
@@ -15,7 +11,6 @@ public class Constant {
   /**
    * 菜单目录
    * 
-   * @author hojy-liuwf
    *
    */
   public enum MenuType {

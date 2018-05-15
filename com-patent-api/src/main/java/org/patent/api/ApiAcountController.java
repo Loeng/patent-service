@@ -15,7 +15,6 @@ import org.patent.service.TokenService;
 import org.patent.utils.ApiRRException;
 import org.patent.utils.ApiResult;
 import org.patent.utils.ApiResultCode;
-import org.patent.utils.DateUtil;
 import org.patent.utils.RRException;
 import org.patent.utils.RegexUtils;
 import org.patent.validator.Assert;
@@ -136,11 +135,12 @@ public class ApiAcountController {
 	 * @return
 	 */
 	@IgnoreAuth
-	@RequestMapping("checkAcount")
+	@RequestMapping("/checkAcount")
 	public ApiResult checkAcount(HttpServletRequest request) {
 		String mobile = request.getParameter("mobile");
 		Assert.isBlank(mobile, ApiResultCode.ACCOUNT_IS_EMPTY, ApiResultCode.ACCOUNT_IS_EMPTY_CODE);
-		Assert.isNull(acountService.queryByMobile(mobile), ApiResultCode.ACCOUNT_NOT_REGISTER, ApiResultCode.ACCOUNT_NOT_REGISTER_CODE);;
+		Assert.isNull(acountService.queryByMobile(mobile), ApiResultCode.ACCOUNT_NOT_REGISTER, ApiResultCode.ACCOUNT_NOT_REGISTER_CODE);
+		System.out.println("验证证号："+mobile);
 		return ApiResult.R();
 	}
 
@@ -161,7 +161,7 @@ public class ApiAcountController {
 		Assert.isBlank(mobile, ApiResultCode.ACCOUNT_IS_EMPTY, ApiResultCode.ACCOUNT_IS_EMPTY_CODE);getClass();
 		Assert.isBlank(password, ApiResultCode.PASSWORD_IS_EMPTY, ApiResultCode.PASSWORD_IS_EMPTY_CODE);
 		Assert.isBlank(code, ApiResultCode.CHECKCODE_IS_EMPTY, ApiResultCode.CHECKCODE_IS_EMPTY_CODE);
-		if (RegexUtils.checkMobile(mobile)) {
+		if (!RegexUtils.checkMobile(mobile)) {
 			throw new ApiRRException(ApiResultCode.PHONE_IS_ERROR, ApiResultCode.PHONE_IS_ERROR_CODE);
 		}
 

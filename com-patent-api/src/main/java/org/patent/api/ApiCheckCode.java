@@ -45,7 +45,7 @@ public class ApiCheckCode {
 		//发送短信验证码，并且保存
 		HashMap<String, Object> smsResult = SendSmsUtils.sendCheckCode(mobile);
 		if ((boolean) smsResult.get("status")) {
-			//保存短信验证码，有效时间为60秒，并且返回给客户端
+			//保存短信验证码，有效时间为120秒，并且返回给客户端
 			SmsEntity smsEntity = smsService.createSmsCode(mobile, smsResult.get("smsCode").toString());
 			HashMap<String, Object> result = new HashMap<>();
 			result.put("code", smsEntity.getCode());

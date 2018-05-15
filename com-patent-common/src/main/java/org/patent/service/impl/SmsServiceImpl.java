@@ -5,8 +5,6 @@ import java.util.Date;
 import org.patent.dao.SmsDao;
 import org.patent.entity.SmsEntity;
 import org.patent.service.SmsService;
-import org.patent.utils.DateUtil;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,7 +58,7 @@ public class SmsServiceImpl implements SmsService{
 			smsEntity.setCode(code);
 			smsEntity.setExpireTime(expire);
 			smsEntity.setUpdateTime(now);
-//			update(smsEntity);
+			update(smsEntity);
 		}
 		return smsEntity;
 	}

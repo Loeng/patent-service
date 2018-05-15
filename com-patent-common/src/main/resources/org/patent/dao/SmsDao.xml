@@ -17,21 +17,29 @@
 		useGeneratedKeys="true" keyProperty="id">
 		insert into Sms
 		(
-			`mobile`, 
-			`code`, 
-			`expire_time`, 
-			`update_time`
+		`mobile`,
+		`code`,
+		`expire_time`,
+		`update_time`
 		)
 		values
 		(
-			#{mobile}, 
-			#{code}, 
-			#{expireTime}, 
-			#{updateTime}
+		#{mobile},
+		#{code},
+		#{expireTime},
+		#{updateTime}
 		)
-		
+
 	</insert>
-	
-	
+
+	<update id="update" parameterType="org.patent.entity.SmsEntity">
+		update Sms
+		<set>
+			<if test="code != null"> `code`=#{code},</if>
+			<if test="expireTime != null"> `expire_time`=#{expireTime},</if>
+			<if test="updateTime != null"> `update_time`=#{updateTime}</if>
+		</set>
+		where mibile = #{mobile}
+	</update>
 
 </mapper>

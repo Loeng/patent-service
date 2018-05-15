@@ -38,8 +38,14 @@
 		`phone`,
 		`imgUrl`,
 		`lastLongTime`,
-		`createTime`
+		`createTime`,
+		`acountType`
 		from Acount where acountName=#{mobile}
+	</select>
+	
+	
+	<select id="queryByAcountType" resultType="org.patent.entity.AcountEntity">
+		select * from Acount where acountType=#{acountType}
 	</select>
 
 	<insert id="save" parameterType="org.patent.entity.AcountEntity"

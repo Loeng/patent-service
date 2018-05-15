@@ -1,8 +1,9 @@
 package org.patent.service;
 
+import java.util.List;
+
 import org.patent.entity.AcountEntity;
 
-import com.sun.tools.javac.util.List;
 import com.sun.xml.internal.xsom.impl.scd.Iterators.Map;
 
 /**
@@ -33,6 +34,13 @@ public interface AcountService {
 	 * @return
 	 */
 	AcountEntity queryByMobile(String mobile);
+	
+	/**
+	 * 根据账号类型查询相反账号的信息
+	 * @param acountType
+	 * @return
+	 */
+	List<AcountEntity> queryByAcountType(int acountType);
 	
 	/**
 	 * 根据条件查询账号列表

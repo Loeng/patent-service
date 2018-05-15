@@ -20,6 +20,43 @@ public class AcountEntity implements Serializable{
 	 private String imgUrl;//头像地址
 	 private Date lastLongTime;//最后一次创建的时间
 	 private Date createTime;//创建时间
+	 private int acountType;//账号类型
+	 private String job;//职业
+	 private String workExprience;//工作经验
+	 private String goodAt;//擅长领域
+	 
+	 public String getWorkExprience() {
+		return workExprience;
+	}
+	public void setWorkExprience(String workExprience) {
+		this.workExprience = workExprience;
+	}
+	public int getAcountType() {
+		return acountType;
+	}
+	public void setAcountType(int acountType) {
+		this.acountType = acountType;
+	}
+	public String getJob() {
+		return job;
+	}
+	public void setJob(String job) {
+		this.job = job;
+	}
+	public String getGoodAt() {
+		return goodAt;
+	}
+	public void setGoodAt(String goodAt) {
+		this.goodAt = goodAt;
+	}
+	public String getInfomation() {
+		return infomation;
+	}
+	public void setInfomation(String infomation) {
+		this.infomation = infomation;
+	}
+	private String infomation;//简介
+	 
 	public Long getAcountId() {
 		return acountId;
 	}

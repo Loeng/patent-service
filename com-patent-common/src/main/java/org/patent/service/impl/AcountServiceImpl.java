@@ -1,6 +1,7 @@
 package org.patent.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.patent.dao.AcountDao;
@@ -14,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sun.tools.javac.util.List;
 import com.sun.xml.internal.xsom.impl.scd.Iterators.Map;
 
 /**
@@ -98,16 +98,25 @@ public class AcountServiceImpl implements AcountService{
 	public AcountEntity queryByMobile(String mobile) {
 		return acountDao.queryByAcountName(mobile);
 	}
+	
+	
 
 	@Transactional
 	@Override
 	public int update(AcountEntity acountEntity) {
 		//修改密码的时候也需要把环信的密码一起修改
+		
 		if (IMUtil.modifyIMUserPasswordWithAdminToken(acountEntity.getAcountName(), acountEntity.getPassword()) == null) {
 			throw new ApiRRException(ApiResultCode.CHANGE_IM_PASSWORD_FAILUE, ApiResultCode.CHANGE_IM_PASSWORD_FAILUE_CODE);
 		}
-		acountEntity.setPassword(new Sha256Hash().toHex());
+		acountEntity.setPassword(new Sha256Hash(acountEntity.getPassword()).toHex());
 		return acountDao.update(acountEntity);
+	}
+
+	@Override
+	public List<AcountEntity> queryByAcountType(int acountType) {
+		
+		return acountDao.queryByAcountType(acountType);
 	}
 
 }

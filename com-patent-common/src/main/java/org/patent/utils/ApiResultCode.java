@@ -66,6 +66,10 @@ public class ApiResultCode {
   public final static String PASSWORD_IS_ERROR = "密码错误，请重新登录";
   public final static int UPDATE_ACOUNT_FAILUE_CODE = 90116;
   public final static String UPDATE_ACOUNT_FAILUE = "修改账户信息失败";
+  public final static int ACOUNT_TYPE_EMPTY_CODE = 90117;
+  public final static String ACOUNT_TYPE_EMPTY = "账户类型为空";
+  public final static int COLLECTION_IS_EMPTY_code = 90118;
+  public final static String COLLECTION_IS_EMPTY = "收藏者账号为空";
 
   // 设备异常
   public final static int IMEI_INPUT_ERROR_CODE = 90201;

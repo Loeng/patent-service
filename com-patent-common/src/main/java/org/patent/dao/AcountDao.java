@@ -1,7 +1,10 @@
 package org.patent.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.patent.entity.AcountEntity;
+
 
 public interface AcountDao extends BaseDao<AcountEntity>{
 	/**
@@ -17,6 +20,13 @@ public interface AcountDao extends BaseDao<AcountEntity>{
 	 * @return
 	 */
 	int updateByAcountName(AcountEntity acount);
+	
+	/**
+	 * 
+	 * @param acountType
+	 * @return
+	 */
+	List<AcountEntity> queryByAcountType(@Param("acountType") int acountType);
 	
 	
 }

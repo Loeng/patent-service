@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.patent.dao.OpinionsDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+	<resultMap type="org.patent.entity.OpinionsEntity" id="fenceMap">
+		<result property="id" column="id" />
+		<result property="acountId" column="acountId" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="reply" column="reply" />
+		<result property="state" column="state" />
+		<result property="createTime" column="createTime" />
+	</resultMap>
+
+	<select id="queryObject" resultType="org.patent.entity.OpinionsEntity">
+		select * from Opinions where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="org.patent.entity.OpinionsEntity">
+		select * from Opinions
+		<where>
+			<if test="state != null and state != ''">
+				and `state` = #{state} 
+			</if>
+		</where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from Opinions 
+		<where>
+			<if test="state != null and state != ''">
+				and `state` = #{state} 
+			</if>
+		</where>
+	</select>
+	
+	<insert id="save" parameterType="org.patent.entity.OpinionsEntity"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into Opinions
+		(
+		`id`,
+		`acountId`,
+		`title`,
+		`content`,
+		`reply`,
+		`state`,
+		`createTime`
+		)
+		values
+		(
+		#{id},
+		#{acountId},
+		#{title},
+		#{content},
+		#{reply},
+		#{state},
+		#{createTime}
+		)
+	</insert>
+
+	<update id="update" parameterType="org.patent.entity.OpinionsEntity">
+		update Opinions
+		<set>
+			<if test="acountId != null">`acountId` = #{acountId}, </if>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="content != null">`content` = #{content}, </if>
+			<if test="reply != null">`reply` = #{reply}, </if>
+			<if test="state != null">`state` = #{state}, </if>
+			<if test="createTime != null">`createTime` = #{createTime}, </if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete">
+		delete from Opinions where id = #{value}
+	</delete>
+
+</mapper>

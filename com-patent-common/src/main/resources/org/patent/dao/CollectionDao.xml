@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.patent.dao.CollectionDao">
+
+
+	<insert id="save" parameterType="org.patent.entity.CollectionEntity"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into collections
+		(
+		`collectorAcount`,
+		`collectibleAcount`
+		)
+		values
+		(
+		#{collector},
+		#{collectible}
+		)
+	</insert>
+
+	<delete id="deleteCotions">
+		delete from collections where id=#{value}
+	</delete>
+
+	<select id="queryCollection" resultType="org.patent.entity.CollectionEntity">
+		select
+		`id`,
+		`collectorAcount`,
+		`collectibleAcount`
+		from collections where
+		collectorAcount=#{value}
+	</select>
+
+	<delete id="cancleCollections" parameterType="org.patent.entity.CollectionEntity">
+		delete from collections where
+		collectorAcount=#{collector} and collectibleAcount=#{collectible}
+	</delete>
+
+	<select id="queryCollectionOneByOne" resultType="Integer">
+		select count(*) from collections where
+		collectorAcount=#{collector} and collectibleAcount=#{collectible}
+	</select>
+
+</mapper>
