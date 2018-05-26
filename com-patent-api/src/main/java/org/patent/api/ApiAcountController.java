@@ -72,7 +72,7 @@ public class ApiAcountController {
 
 		//获取当前验证码，是否有效
 		SmsEntity smsEntity = smsService.queryByMobile(mobile);
-		Assert.isNull(smsEntity, ApiResultCode.CHECKCODE_IS_ERROR, ApiResultCode.CHECKCODE_INPUT_ERROR_CODE);
+		Assert.isNull(smsEntity, ApiResultCode.CHECKCODE_IS_ERROR, ApiResultCode.CHECKCODE_IS_ERROR_CODE);
 		if (smsEntity.getExpireTime().getTime() < System.currentTimeMillis()) {
 			//短信验证码已经过期
 			throw new ApiRRException(ApiResultCode.CHECKCODE_IS_INNALID, ApiResultCode.CHECKCODE_IS_INNALID_CODE);
@@ -169,7 +169,7 @@ public class ApiAcountController {
 		Assert.isNull(acountEntity, ApiResultCode.ACCOUNT_NOT_REGISTER, ApiResultCode.ACCOUNT_NOT_REGISTER_CODE);
 		//获取当前验证码，是否有效
 		SmsEntity smsEntity = smsService.queryByMobile(mobile);
-		Assert.isNull(smsEntity, ApiResultCode.CHECKCODE_IS_ERROR, ApiResultCode.CHECKCODE_INPUT_ERROR_CODE);
+		Assert.isNull(smsEntity, ApiResultCode.CHECKCODE_IS_ERROR, ApiResultCode.CHECKCODE_IS_ERROR_CODE);
 		if (smsEntity.getExpireTime().getTime() < System.currentTimeMillis()) {
 			//短信验证码已经过期
 			throw new ApiRRException(ApiResultCode.CHECKCODE_IS_INNALID, ApiResultCode.CHECKCODE_IS_INNALID_CODE);
@@ -237,7 +237,7 @@ public class ApiAcountController {
 		Assert.isNull(acountEntity, ApiResultCode.ACCOUNT_NOT_REGISTER, ApiResultCode.ACCOUNT_NOT_REGISTER_CODE);
 		//获取当前验证码，是否有效
 		SmsEntity smsEntity = smsService.queryByMobile(mobile);
-		Assert.isNull(smsEntity, ApiResultCode.CHECKCODE_IS_ERROR, ApiResultCode.CHECKCODE_INPUT_ERROR_CODE);
+		Assert.isNull(smsEntity, ApiResultCode.CHECKCODE_IS_ERROR, ApiResultCode.CHECKCODE_IS_ERROR_CODE);
 		if (smsEntity.getExpireTime().getTime() < System.currentTimeMillis()) {
 			//短信验证码已经过期
 			throw new ApiRRException(ApiResultCode.CHECKCODE_IS_INNALID, ApiResultCode.CHECKCODE_IS_INNALID_CODE);

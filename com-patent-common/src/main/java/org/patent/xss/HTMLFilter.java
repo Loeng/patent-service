@@ -11,7 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- HTML特殊编码过滤 * 
+ * HTML特殊编码过滤
+ * 
  *
  */
 public final class HTMLFilter {
@@ -70,29 +71,29 @@ public final class HTMLFilter {
   private final boolean alwaysMakeTags;
 
   /**
-   * Ĭ�Ϲ��캯��
+   * 默认构造函数
    */
   public HTMLFilter() {
     vAllowed = new HashMap<>();
-    // ���˳�����
+    // 过滤超链接
     final ArrayList<String> a_atts = new ArrayList<String>();
     a_atts.add("href");
     a_atts.add("target");
     vAllowed.put("a", a_atts);
-    // ����Ԫ�ر�ǩ
+    // 过滤元素标签
     final ArrayList<String> img_atts = new ArrayList<String>();
     img_atts.add("src");
     img_atts.add("width");
     img_atts.add("height");
     img_atts.add("alt");
     vAllowed.put("img", img_atts);
-    // ���������ǩ
+    // 过滤字体标签
     final ArrayList<String> no_atts = new ArrayList<String>();
     vAllowed.put("b", no_atts);
     vAllowed.put("strong", no_atts);
     vAllowed.put("i", no_atts);
     vAllowed.put("em", no_atts);
-    // ���������ַ�����
+    // 过滤特殊字符编码
     vSelfClosingTags = new String[] {"img"};
     vNeedClosingTags = new String[] {"a", "b", "strong", "i", "em"};
     vDisallowed = new String[] {};
@@ -116,7 +117,7 @@ public final class HTMLFilter {
 
   /**
    * Map-parameter configurable constructor.
-   *
+   *有参数的构造器
    * @param conf map containing configuration. keys match field names.
    */
   @SuppressWarnings("unchecked")
@@ -154,6 +155,11 @@ public final class HTMLFilter {
     return String.valueOf((char) decimal);
   }
 
+  /**
+   * 特殊脚本字符转为实体字符的方法
+   * @param s
+   * @return
+   */
   public static String htmlSpecialChars(final String s) {
     String result = s;
     result = regexReplace(P_AMP, "&amp;", result);
@@ -173,10 +179,10 @@ public final class HTMLFilter {
   public String filter(final String input) {
     reset();
     String s = input;
-    s = escapeComments(s);
-    s = balanceHTML(s);
-    s = checkTags(s);
-    s = processRemoveBlanks(s);
+    s = escapeComments(s); //通过正则将特殊字符替换为实体字符
+    s = balanceHTML(s);//正则匹配替换
+    s = checkTags(s); //检查规则
+    s = processRemoveBlanks(s); 
     s = validateEntities(s);
     return s;
   }
@@ -446,3 +452,4 @@ public final class HTMLFilter {
     return allowed(name) && (vAllowed.isEmpty() || vAllowed.get(name).contains(paramName));
   }
 }
+

@@ -34,11 +34,6 @@ public class CommonUtil {
 
   public static final String SHARE_KEY = "share_key";
 
-  // 能推送给设备喜马拉雅能的最大故事数量
-  public static final Integer HIMALAYAN_MAX_STORY_NUM = 20;
-  // 能推送给设备的所有故事总大小限定
-  public static final Integer HIMALAYAN_MAX_SIZE_NUM = 60 * 1024 * 1024;
-
 
   /**
    * 计算两经纬度之间的距离
@@ -129,74 +124,6 @@ public class CommonUtil {
     } else {
       return false;
     }
-  }
-
-  /**
-   * 判断经纬度输入是否正确
-   * 
-   * @param lng 经度 -180~180
-   * @param lat 纬度 -90~90
-   */
-  public static void checkLngLat(Double lng, Double lat) {
-    if (lng == null || lng <= -180 || lng >= 180) {
-      throw new ApiRRException(ApiResultCode.FENCE_LNG_LAT_ERROR_MSG, ApiResultCode.FENCE_LNG_LAT_ERROR_CODE);
-    }
-    if (lat == null || lat <= -90 || lat >= 90) {
-      throw new ApiRRException(ApiResultCode.FENCE_LNG_LAT_ERROR_MSG, ApiResultCode.FENCE_LNG_LAT_ERROR_CODE);
-    }
-  }
-
-
-  /**
-   * 计算 bearing (正北方向夹角)，可作速度方向
-   * 
-   * @param lat_a 纬度1
-   * @param lng_a 经度1
-   * @param lat_b 纬度2
-   * @param lng_b 经度2
-   * @return
-   */
-  private static double getAngle1(double lng_a, double lat_a, double lng_b, double lat_b) {
-
-    double y = Math.sin(lng_b - lng_a) * Math.cos(lat_b);
-    double x = Math.cos(lat_a) * Math.sin(lat_b) - Math.sin(lat_a) * Math.cos(lat_b) * Math.cos(lng_b - lng_a);
-    double brng = Math.atan2(y, x);
-
-    brng = Math.toDegrees(brng);
-    if (brng < 0)
-      brng = brng + 360;
-    return brng;
-
-  }
-
-  /**
-   * 计算 bearing (正北方向夹角)，可作速度方向（航向角）
-   * 
-   * @param lat_a 纬度1
-   * @param lng_a 经度1
-   * @param lat_b 纬度2
-   * @param lng_b 经度2
-   * @return
-   */
-  public static double getAngle(double lng_b, double lat_b, double lng_a, double lat_a) {
-    double brng = Math.atan((lng_b - lng_a) * Math.cos(lat_b) / (lat_b - lat_a));
-    brng = Math.toDegrees(brng);
-    double dLo = lng_b - lng_a;
-    double dLa = lat_b - lat_a;
-    if (dLo > 0 && dLa > 0) {
-      brng = brng + 360;
-    } else if (dLa < 0) {
-      brng = brng + 180.;
-    }
-    return brng;
-
-  }
-
-  public static void main(String[] args) {
-    System.out.println(getAngle(113.9447561, 22.5456443, 113.9437207, 22.5391461));
-    System.out.println(getAngle1(113.9447561, 22.5456443, 113.9437207, 22.5391461));
-    System.out.println(getAngle(110, 23.5456443, 113.9447561, 22.5391461));
-    System.out.println(getAngle1(110, 23.5456443, 113.9447561, 22.5391461));
   }
 
 }

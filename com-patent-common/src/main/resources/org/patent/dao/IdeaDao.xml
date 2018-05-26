@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.patent.dao.IdeaDao">
+
+	<insert id="inserNewIdea" parameterType="org.patent.entity.IdeaEntity"
+		useGeneratedKeys="true" keyProperty="id">
+			insert into Ideas
+		(
+		`acountId`,
+		`title`,
+		`content`,
+		`ideaImage`,
+		`ideaFile`,
+		`createTime`
+		)
+		values
+		(
+		#{acountId},
+		#{title},
+		#{content},
+		#{ideaImage},
+		#{ideaFile},
+		#{createTime}
+		)
+
+	</insert>
+
+</mapper>

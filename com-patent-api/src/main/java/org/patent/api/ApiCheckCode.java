@@ -37,7 +37,7 @@ public class ApiCheckCode {
 	@RequestMapping("/sendCheackCode")
 	public ApiResult sendCheckCode(HttpServletRequest request) {
 		String mobile = request.getParameter("mobile");
-		Assert.isBlank(mobile, ApiResultCode.PHONENUM_IS_EMPTY_MSG,ApiResultCode.PHONENUM_IS_EMPTY_CODE);
+		Assert.isBlank(mobile, ApiResultCode.MOBILE_IS_EMPTY,ApiResultCode.MOBILE_IS_EMPTY_CODE);
 		if (!RegexUtils.checkMobile(mobile)) {
 			throw new ApiRRException(ApiResultCode.PHONE_IS_ERROR, ApiResultCode.PHONE_IS_ERROR_CODE);
 		}
