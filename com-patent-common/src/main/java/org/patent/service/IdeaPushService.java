@@ -9,5 +9,7 @@ public interface IdeaPushService {
 	 * @param ideaEntity
 	 */
 	public void insertNewIdea(IdeaEntity ideaEntity);
+	
+	public void updateIdeasList(IdeaEntity ideaEntity);
 
 }

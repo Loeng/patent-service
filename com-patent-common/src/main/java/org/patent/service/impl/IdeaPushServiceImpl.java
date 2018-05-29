@@ -16,6 +16,11 @@ public class IdeaPushServiceImpl implements IdeaPushService{
 	public void insertNewIdea(IdeaEntity ideaEntity) {
 		ideaDao.inserNewIdea(ideaEntity);
 	}
+
+	@Override
+	public void updateIdeasList(IdeaEntity ideaEntity) {
+		ideaDao.updateIdeas(ideaEntity);
+	}
 	
 
 }

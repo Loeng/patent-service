@@ -18,7 +18,8 @@
 		select count(*) from sys_oss 
 	</select>
 	 
-	<insert id="save" parameterType="org.patent.entity.SysOssEntity" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="org.patent.entity.SysOssEntity" 
+	useGeneratedKeys="true" keyProperty="id">
 		insert into sys_oss
 		(
 			`url`, 

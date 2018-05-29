@@ -5,7 +5,7 @@
 
 	<insert id="inserNewIdea" parameterType="org.patent.entity.IdeaEntity"
 		useGeneratedKeys="true" keyProperty="id">
-			insert into Ideas
+			insert into ideas
 		(
 		`acountId`,
 		`title`,
@@ -25,5 +25,10 @@
 		)
 
 	</insert>
+	
+	<update id="updateIdeas" parameterType="org.patent.entity.IdeaEntity">
+	
+	
+	</update>
 
 </mapper>

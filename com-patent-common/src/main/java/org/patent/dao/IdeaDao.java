@@ -6,4 +6,6 @@ public interface IdeaDao extends BaseDao<IdeaEntity>{
 
 	void inserNewIdea(IdeaEntity ideaEntity);
 
+	void updateIdeas(IdeaEntity ideaEntity);
+
 }
