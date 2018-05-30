@@ -51,7 +51,6 @@
 		useGeneratedKeys="true" keyProperty="id">
 		insert into Opinions
 		(
-		`id`,
 		`acountId`,
 		`title`,
 		`content`,
@@ -61,7 +60,6 @@
 		)
 		values
 		(
-		#{id},
 		#{acountId},
 		#{title},
 		#{content},

@@ -47,7 +47,7 @@ public interface AcountService {
 	 * @param map 查询条件
 	 * @return
 	 */
-	List<AcountEntity> queryList(Map<String, Object> map);
+	List<AcountEntity> queryList(String keyword);
 	
 	/**
 	 * 根据条件查询账户记录总数

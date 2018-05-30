@@ -27,6 +27,13 @@ public interface AcountDao extends BaseDao<AcountEntity>{
 	 * @return
 	 */
 	List<AcountEntity> queryByAcountType(@Param("acountType") int acountType);
+
+	/**
+	 * 根据关键词查询专家用户
+	 * @param map
+	 * @return
+	 */
+	List<AcountEntity> queryListByKeywords(@Param("keyword") String keyword);
 	
 	
 }

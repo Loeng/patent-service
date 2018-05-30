@@ -36,9 +36,8 @@ public class AcountServiceImpl implements AcountService{
 	}
 
 	@Override
-	public List<AcountEntity> queryList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<AcountEntity> queryList(String keyword) {
+		return acountDao.queryListByKeywords(keyword);
 	}
 
 	@Override

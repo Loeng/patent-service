@@ -47,6 +47,13 @@
 	<select id="queryByAcountType" resultType="org.patent.entity.AcountEntity">
 		select * from Acount where acountType=#{acountType}
 	</select>
+	
+	<select id="queryListByKeywords" resultType="org.patent.entity.AcountEntity">
+		select * from Acount where 
+		nickName LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+		or job LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+		or goodAt LIKE CONCAT(CONCAT('%',#{keyword}),'%')  
+	</select>
 
 	<insert id="save" parameterType="org.patent.entity.AcountEntity"
 		useGeneratedKeys="true" keyProperty="acountId">

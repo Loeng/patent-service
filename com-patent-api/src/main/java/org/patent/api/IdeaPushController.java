@@ -1,12 +1,17 @@
 package org.patent.api;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.patent.entity.AcountEntity;
 import org.patent.entity.IdeaEntity;
 import org.patent.oss.OSSFactory;
+import org.patent.service.AcountService;
 import org.patent.service.IdeaPushService;
 import org.patent.utils.ApiRRException;
 import org.patent.utils.ApiResult;
@@ -33,6 +38,9 @@ public class IdeaPushController {
 
 	@Autowired
 	IdeaPushService ideaPushService;
+	
+	@Autowired
+	AcountService acountService;
 
 	private int randmonNumber;
 
@@ -181,5 +189,32 @@ public class IdeaPushController {
 
 		ideaEntity.setCreateTime(new Date());
 		ideaPushService.insertNewIdea(ideaEntity);
+	}
+
+
+	@RequestMapping("/queryProfessByKeyWords")
+	private ApiResult queryProfessByKeywords(HttpServletRequest request) {
+		String keywords = request.getParameter("keyWords");
+		Assert.isBlank(keywords, ApiResultCode.KEY_WORDS_EMPTY, ApiResultCode.KEY_WORDS_EMPTY_CODE);
+		List<AcountEntity> resultList = new ArrayList<>();
+		resultList = acountService.queryList(keywords);
+		HashMap<String, Object> resultMap = new HashMap<>();
+		List<HashMap<String, Object>> hashList= new ArrayList<>();
+		if (resultList != null && resultList.size()>0) {
+			for(int i = 0;i<resultList.size();i++) {
+				AcountEntity acountEntity2 = resultList.get(i);
+				HashMap<String, Object> hashMap = new HashMap<>();
+				hashMap.put("imgUrl", acountEntity2.getImgUrl());
+				hashMap.put("nickName", acountEntity2.getNickName());
+				hashMap.put("job",acountEntity2.getJob());
+				hashMap.put("workExprience",acountEntity2.getWorkExprience());
+				hashMap.put("goodAt", acountEntity2.getGoodAt());
+				hashMap.put("infomation", acountEntity2.getInfomation());
+				hashMap.put("acountName", acountEntity2.getAcountName());
+				hashList.add(hashMap);
+			}
+		}
+		resultMap.put("userInfoList", hashList);
+		return ApiResult.R().setResult(resultMap);
 	}
 }

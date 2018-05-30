@@ -1,7 +1,11 @@
 package org.patent.api;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.patent.entity.AppversionEntity;
 import org.patent.service.AppversionService;
 import org.patent.utils.ApiResult;
 import org.patent.utils.ApiResultCode;
@@ -25,7 +29,10 @@ public class ApiVersionController {
 	@RequestMapping("/cheakVersion")
 	public ApiResult checkVersion(HttpServletRequest request) {
 		String versioncode = request.getParameter("versionCode");
+		System.out.println("versionCode-------->"+versioncode);
 		Assert.isBlank(versioncode, ApiResultCode.VERSION_IS_EMPTY, ApiResultCode.VERSION_INPUT_ERROR_CODE);
-		return ApiResult.R().setResult(appversionService.checkAndroidVersion(versioncode));
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("hasNewVesion",false);
+		return ApiResult.R().setResult(map);
 	}
 }

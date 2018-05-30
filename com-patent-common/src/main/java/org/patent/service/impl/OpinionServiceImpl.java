@@ -21,12 +21,12 @@ public class OpinionServiceImpl implements OpinionService {
   @Override
   public void insertOrUpdateOpinions(OpinionsEntity opinionsEntity) {
     // 根据实体有无id，判断是写入还是更新
-    if (opinionsEntity.getId() != 0 && StringUtils.isNotBlank(String.valueOf(opinionsEntity.getId()))) {
-      opinionsDao.update(opinionsEntity);
-    } else {
+//    if (opinionsEntity.getId() != 0 && StringUtils.isNotBlank(String.valueOf(opinionsEntity.getId()))) {
+//      opinionsDao.update(opinionsEntity);
+//    } else {
       opinionsEntity.setCreateTime(new Date());
       opinionsDao.save(opinionsEntity);
-    }
+//    }
   }
 
   @Override

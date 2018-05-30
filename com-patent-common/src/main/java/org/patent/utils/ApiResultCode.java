@@ -159,6 +159,8 @@ public class ApiResultCode {
   // 意见反馈异常
   public final static int OPINION_IS_EMPTY_CODE = 92201;
   public final static String OPINION_IS_EMPTY_MSG = "意见反馈的内容不能为空";
+  public final static int KEY_WORDS_EMPTY_CODE= 92202;
+  public final static String KEY_WORDS_EMPTY = "搜索关键词不能为空";
 
 
 
