@@ -3,8 +3,6 @@ package org.patent.service.impl;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.lang.StringUtils;
 import org.patent.dao.OpinionsDao;
 import org.patent.entity.OpinionsEntity;
 import org.patent.service.OpinionService;

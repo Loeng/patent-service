@@ -1,11 +1,7 @@
 package org.patent.api;
 
 import java.util.HashMap;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
-import org.patent.entity.AppversionEntity;
 import org.patent.service.AppversionService;
 import org.patent.utils.ApiResult;
 import org.patent.utils.ApiResultCode;

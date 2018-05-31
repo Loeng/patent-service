@@ -4,7 +4,6 @@ package org.patent.service.impl;
 import org.patent.dao.SysMenuDao;
 import org.patent.entity.SysMenuEntity;
 import org.patent.service.SysMenuService;
-import org.patent.service.SysRoleMenuService;
 import org.patent.service.SysUserService;
 import org.patent.utils.Constant.MenuType;
 
@@ -14,7 +13,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 菜单服务类
@@ -30,8 +28,6 @@ public class SysMenuServiceImpl implements SysMenuService {
   @Autowired
   private SysUserService sysUserService;
   
-  @Autowired
-  private SysRoleMenuService sysRoleMenuService;
 
   @Override
   public List<SysMenuEntity> queryListParentId(Long parentId, List<Long> menuIdList) {

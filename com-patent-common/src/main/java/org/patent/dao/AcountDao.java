@@ -34,6 +34,8 @@ public interface AcountDao extends BaseDao<AcountEntity>{
 	 * @return
 	 */
 	List<AcountEntity> queryListByKeywords(@Param("keyword") String keyword);
+
+	void updateHeadImage(AcountEntity acountEntity);
 	
 	
 }

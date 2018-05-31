@@ -81,5 +81,11 @@ public interface AcountService {
  	 * @param mobile 手机号码
 	 */
 	void delectAcountByAcountIdOrMobile(Long id,String mobile);
+
+	/**
+	 * 更新用户头像
+	 * @param acountEntity
+	 */
+	void updateHeadImage(AcountEntity acountEntity);
 	
 }

@@ -2,7 +2,6 @@ package org.patent.api;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
 import org.patent.entity.OpinionsEntity;
 import org.patent.service.OpinionService;
 import org.patent.utils.ApiResult;

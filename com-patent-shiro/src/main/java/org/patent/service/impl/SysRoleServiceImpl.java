@@ -5,7 +5,6 @@ import org.patent.dao.SysRoleDao;
 import org.patent.entity.SysRoleEntity;
 import org.patent.service.SysRoleMenuService;
 import org.patent.service.SysRoleService;
-import org.patent.service.SysUserRoleService;
 import org.patent.service.SysUserService;
 import org.patent.utils.Constant;
 import org.patent.utils.RRException;
@@ -33,8 +32,6 @@ public class SysRoleServiceImpl implements SysRoleService {
   @Autowired
   private SysRoleMenuService sysRoleMenuService;
 
-  @Autowired
-  private SysUserRoleService sysUserRoleService;
 
   @Autowired
   private SysUserService sysUserService;

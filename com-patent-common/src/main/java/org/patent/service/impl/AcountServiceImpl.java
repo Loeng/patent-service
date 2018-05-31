@@ -118,4 +118,9 @@ public class AcountServiceImpl implements AcountService{
 		return acountDao.queryByAcountType(acountType);
 	}
 
+	@Override
+	public void updateHeadImage(AcountEntity acountEntity) {
+		acountDao.updateHeadImage(acountEntity);
+	}
+
 }

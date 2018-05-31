@@ -13,8 +13,6 @@ import org.patent.utils.ApiResultCode;
 import org.patent.utils.RegexUtils;
 import org.patent.utils.SendSmsUtils;
 import org.patent.validator.Assert;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class ApiCheckCode {
-	  private static final Logger logger = LoggerFactory.getLogger(ApiCheckCode.class);
 
 	@Autowired
 	private SmsService smsService;

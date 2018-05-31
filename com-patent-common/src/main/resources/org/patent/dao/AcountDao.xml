@@ -42,17 +42,21 @@
 		`acountType`
 		from Acount where acountName=#{mobile}
 	</select>
-	
-	
+
+
 	<select id="queryByAcountType" resultType="org.patent.entity.AcountEntity">
-		select * from Acount where acountType=#{acountType}
+		select * from Acount
+		where acountType=#{acountType}
 	</select>
-	
+
 	<select id="queryListByKeywords" resultType="org.patent.entity.AcountEntity">
-		select * from Acount where 
+		select * from Acount
+		where
 		nickName LIKE CONCAT(CONCAT('%',#{keyword}),'%')
-		or job LIKE CONCAT(CONCAT('%',#{keyword}),'%')
-		or goodAt LIKE CONCAT(CONCAT('%',#{keyword}),'%')  
+		or job LIKE
+		CONCAT(CONCAT('%',#{keyword}),'%')
+		or goodAt LIKE
+		CONCAT(CONCAT('%',#{keyword}),'%')
 	</select>
 
 	<insert id="save" parameterType="org.patent.entity.AcountEntity"
@@ -112,6 +116,13 @@
 		delete from Acount where acountId=#{value}
 	</delete>
 
+	<update id="updateHeadImage" parameterType="org.patent.entity.AcountEntity">
+		update Acount
+		<set>
+			<if test="imgUrl != null"> `imgUrl`=#{imgUrl}</if>
+		</set>
+		where acountId=#{acountId}
+	</update>
 
 </mapper>
 

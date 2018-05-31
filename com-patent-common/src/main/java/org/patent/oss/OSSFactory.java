@@ -3,7 +3,6 @@ package org.patent.oss;
 
 import org.patent.service.SysConfigService;
 import org.patent.utils.ConfigConstant;
-import org.patent.utils.Constant;
 import org.patent.utils.SpringContextUtils;
 
 /**

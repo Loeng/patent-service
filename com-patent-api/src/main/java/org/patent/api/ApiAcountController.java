@@ -9,6 +9,7 @@ import org.patent.annotation.IgnoreAuth;
 import org.patent.annotation.NotifyCustomer;
 import org.patent.entity.AcountEntity;
 import org.patent.entity.SmsEntity;
+import org.patent.oss.OSSFactory;
 import org.patent.service.AcountService;
 import org.patent.service.SmsService;
 import org.patent.service.TokenService;
@@ -22,7 +23,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 
 
@@ -257,4 +260,35 @@ public class ApiAcountController {
 		}
 	}
 
+
+	@RequestMapping("/updateHeadImage")
+	public ApiResult updateHeadImage(@RequestParam("File") CommonsMultipartFile[] fileFiles,
+			HttpServletRequest request) {
+		String acountId = request.getParameter("acountId");	
+		System.out.println("666666666");
+		Assert.isBlank(acountId, ApiResultCode.ACCOUNTID_IS_EMPTY, ApiResultCode.ADMINID_IS_EMPTY_CODE);
+		if (fileFiles == null) {
+			throw new ApiRRException(ApiResultCode.FILE_IS_EMPTY, ApiResultCode.FILE_INPUT_ERROR_CODE);
+		}
+		StringBuffer sBuffer = new StringBuffer();
+		AcountEntity acountEntity = new AcountEntity();
+		acountEntity.setAcountId(Long.valueOf(acountId));
+		String suffix = fileFiles[0]
+				.getOriginalFilename()
+				.substring(fileFiles[0]
+						.getOriginalFilename()
+						.lastIndexOf("."));
+		if (".GIF".endsWith(suffix.toUpperCase()) || ".PNG".equals(suffix.toUpperCase()) || ".JPG".equals(suffix.toUpperCase())
+				|| ".BMP".equals(suffix.toUpperCase())) {
+			int randmonNumber = (int) (Math.random()*10000);
+			String url = OSSFactory.build().upload(fileFiles[0].getBytes(),"image"+randmonNumber+suffix);
+			System.out.println("url-------->"+url);
+			sBuffer.append(url);
+		}else {
+			throw new ApiRRException(ApiResultCode.FILE_FORMAT_ERROR, ApiResultCode.FILE_FORMAT_ERROR_CODE);
+		}
+		acountEntity.setImgUrl(sBuffer.toString());
+		acountService.updateHeadImage(acountEntity);
+		return ApiResult.R();
+	}
 }
