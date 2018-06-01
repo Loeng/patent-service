@@ -124,5 +124,9 @@
 		where acountId=#{acountId}
 	</update>
 
+	<select id="queryProfessByAcountName" resultType="org.patent.entity.AcountEntity">
+		select * from Acount where acountName = #{acountName}
+	</select>
+
 </mapper>
 

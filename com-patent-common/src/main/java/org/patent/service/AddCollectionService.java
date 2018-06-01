@@ -44,4 +44,11 @@ public interface AddCollectionService {
 	 */
 	public int queryCollectionsOneByOne(CollectionEntity collectionEntity);
 
+	/**
+	 * 更具收藏者账号名查询所有被收藏者的账号
+	 * @param acountName
+	 * @return
+	 */
+	public List<CollectionEntity> queryMyCollections(String acountName);
+
 }

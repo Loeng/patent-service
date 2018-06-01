@@ -3,6 +3,11 @@
 
 <mapper namespace="org.patent.dao.CollectionDao">
 
+<resultMap type="org.patent.entity.CollectionEntity" id="acountMap">
+		<result property="id" column="id" />
+		<result property="collectorAcount" column="collectorAcount" />
+		<result property="collectibleAcount" column="collectibleAcount" />
+	</resultMap>
 
 	<insert id="save" parameterType="org.patent.entity.CollectionEntity"
 		useGeneratedKeys="true" keyProperty="id">
@@ -13,8 +18,8 @@
 		)
 		values
 		(
-		#{collector},
-		#{collectible}
+		#{collectorAcount},
+		#{collectibleAcount}
 		)
 	</insert>
 
@@ -28,17 +33,26 @@
 		`collectorAcount`,
 		`collectibleAcount`
 		from collections where
-		collectorAcount=#{value}
+		collectorAcount=#{collectorAcount}
 	</select>
 
 	<delete id="cancleCollections" parameterType="org.patent.entity.CollectionEntity">
-		delete from collections where
-		collectorAcount=#{collector} and collectibleAcount=#{collectible}
+		delete from
+		collections where
+		collectorAcount=#{collectorAcount} and
+		collectibleAcount=#{collectibleAcount}
 	</delete>
 
 	<select id="queryCollectionOneByOne" resultType="Integer">
-		select count(*) from collections where
-		collectorAcount=#{collector} and collectibleAcount=#{collectible}
+		select count(*)
+		from collections where
+		collectorAcount=#{collectorAcount} and
+		collectibleAcount=#{collectibleAcount}
+	</select>
+	
+	<select id="queryAllCollections" resultType="org.patent.entity.CollectionEntity">
+		select * from collections where
+		collectorAcount=#{acountName}
 	</select>
 
 </mapper>

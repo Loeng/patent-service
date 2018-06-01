@@ -26,7 +26,7 @@ public class AddCollectionServiceImpl implements AddCollectionService{
 
 	@Override
 	public List<CollectionEntity> queryCollections(CollectionEntity collectionEntity) {
-		return collectionDao.queryCollection(collectionEntity.getCollector());
+		return collectionDao.queryCollection(collectionEntity.getCollectibleAcount());
 	}
 
 	@Override
@@ -37,6 +37,11 @@ public class AddCollectionServiceImpl implements AddCollectionService{
 	@Override
 	public int queryCollectionsOneByOne(CollectionEntity collectionEntity) {
 		return collectionDao.queryCollectionOneByOne(collectionEntity);
+	}
+
+	@Override
+	public List<CollectionEntity> queryMyCollections(String acountName) {
+		return collectionDao.queryAllCollections(acountName);
 	}
 
 }

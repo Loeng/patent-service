@@ -1,5 +1,7 @@
 package org.patent.service;
 
+import java.util.List;
+
 import org.patent.entity.IdeaEntity;
 
 public interface IdeaPushService {
@@ -11,5 +13,7 @@ public interface IdeaPushService {
 	public void insertNewIdea(IdeaEntity ideaEntity);
 	
 	public void updateIdeasList(IdeaEntity ideaEntity);
+
+	public List<IdeaEntity> queryMyIdeaPushed(String acountName);
 
 }

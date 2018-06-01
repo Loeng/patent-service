@@ -123,4 +123,9 @@ public class AcountServiceImpl implements AcountService{
 		acountDao.updateHeadImage(acountEntity);
 	}
 
+	@Override
+	public AcountEntity queryByAcountName(String collectible) {
+		return acountDao.queryProfessByAcountName(collectible);
+	}
+
 }

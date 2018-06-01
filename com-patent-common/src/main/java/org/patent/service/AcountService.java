@@ -87,5 +87,12 @@ public interface AcountService {
 	 * @param acountEntity
 	 */
 	void updateHeadImage(AcountEntity acountEntity);
+
+	/**
+	 * 更急账号名查询被收藏的专家
+	 * @param collectible
+	 * @return
+	 */
+	AcountEntity queryByAcountName(String collectible);
 	
 }

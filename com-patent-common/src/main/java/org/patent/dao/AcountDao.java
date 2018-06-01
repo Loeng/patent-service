@@ -37,5 +37,6 @@ public interface AcountDao extends BaseDao<AcountEntity>{
 
 	void updateHeadImage(AcountEntity acountEntity);
 	
+	AcountEntity queryProfessByAcountName(@Param("acountName") String mobile);
 	
 }

@@ -30,5 +30,11 @@
 	
 	
 	</update>
+	
+	
+	<select id = "queryMyPushIdeas" resultType="org.patent.entity.IdeaEntity">
+	select * from ideas where
+		acountId=#{acountId}
+	</select>
 
 </mapper>

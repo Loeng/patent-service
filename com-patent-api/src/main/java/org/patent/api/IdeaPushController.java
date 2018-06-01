@@ -196,8 +196,10 @@ public class IdeaPushController {
 	private ApiResult queryProfessByKeywords(HttpServletRequest request) {
 		String keywords = request.getParameter("keyWords");
 		Assert.isBlank(keywords, ApiResultCode.KEY_WORDS_EMPTY, ApiResultCode.KEY_WORDS_EMPTY_CODE);
+		
 		List<AcountEntity> resultList = new ArrayList<>();
 		resultList = acountService.queryList(keywords);
+		
 		HashMap<String, Object> resultMap = new HashMap<>();
 		List<HashMap<String, Object>> hashList= new ArrayList<>();
 		if (resultList != null && resultList.size()>0) {
@@ -217,4 +219,27 @@ public class IdeaPushController {
 		resultMap.put("userInfoList", hashList);
 		return ApiResult.R().setResult(resultMap);
 	}
+
+
+	@RequestMapping("/queryPUSHIdeaOfMine")
+	public ApiResult queryMyIdeaAll(HttpServletRequest request) {
+		String acountName = request.getParameter("acountId");
+		Assert.isBlank(acountName, ApiResultCode.ACCOUNTNAME_IS_EMPTY, ApiResultCode.ACCOUNTNAME_IS_EMPTY_CODE);
+
+		List<IdeaEntity> ideaLists = ideaPushService.queryMyIdeaPushed(acountName);
+		HashMap<String, Object> resultMap = new HashMap<>();
+		List<HashMap<String, Object>> hashList= new ArrayList<>();
+		if (ideaLists != null && ideaLists.size() > 0) {
+			for(int i = 0;i<ideaLists.size();i++) {
+				IdeaEntity ideaEntity2 = new IdeaEntity();
+				HashMap<String, Object> hashMap = new HashMap<>();
+				hashMap.put("ideaTitle", ideaEntity2.getTitle());
+				hashMap.put("ideaContent",ideaEntity2.getContent());
+				hashList.add(hashMap);
+			}
+		}
+		resultMap.put("userInfoList", hashList);
+		return ApiResult.R().setResult(resultMap);
+	}
+
 }
