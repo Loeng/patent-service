@@ -65,6 +65,7 @@ public class ApiAcountController {
 		String mobile = request.getParameter("mobile");
 		String password = request.getParameter("password");
 		String code = request.getParameter("code");
+		String acountType = request.getParameter("acountType");
 
 		Assert.isBlank(mobile, ApiResultCode.ACCOUNT_IS_EMPTY, ApiResultCode.ACCOUNT_IS_EMPTY_CODE);
 		Assert.isBlank(password, ApiResultCode.PASSWORD_IS_EMPTY, ApiResultCode.PASSWORD_IS_EMPTY_CODE);
@@ -83,8 +84,16 @@ public class ApiAcountController {
 
 		//判断用户提交的短息验证码是否正确，如果正确，注册用户信息并且返回客户端数据
 		if (smsEntity.getCode().equals(code)) {
-			AcountEntity acountEntity = acountService.registerAcount(mobile, password);
+			AcountEntity acountEntity = new AcountEntity(); 
 			HashMap<String, Object> hashMap = new HashMap<>();
+			acountService.registerAcount(mobile, password,acountType);
+			if (acountType.equals("1")) {//普通用户注册
+				hashMap.put("acountType", "1");
+			}else {
+				//专业用户注册
+				hashMap.put("acountType", "2");
+			}
+			
 			hashMap.put("acountId", acountEntity.getAcountId());
 			hashMap.put("acountName", acountEntity.getAcountName());
 			hashMap.put("password", acountEntity.getPassword());
@@ -196,32 +205,31 @@ public class ApiAcountController {
 	@RequestMapping("/updateAcount")
 	public ApiResult updateAcountInfo(HttpServletRequest request) {
 		String acountId = request.getParameter("acountId");
-		String nickName = request.getParameter("nickName");
-		String phone = request.getParameter("phone");
-		String imgUrl = request.getParameter("imgUrl");
+		String nick = request.getParameter("nick");
+		String job = request.getParameter("job");
+		String skill = request.getParameter("skill");
+		String experience = request.getParameter("experience");
+		String information = request.getParameter("information");
+		String acountName = request.getParameter("acountName");
 
-		Assert.isBlank(acountId, ApiResultCode.ACCOUNT_IS_EMPTY, ApiResultCode.ACCOUNT_IS_EMPTY_CODE);
-		AcountEntity acountEntity = acountService.queryObject(Long.valueOf(acountId));
-		Assert.isNull(acountEntity, ApiResultCode.ACCOUNT_NOT_REGISTER, ApiResultCode.ACCOUNT_NOT_REGISTER_CODE);
-
-		if (StringUtils.isNotBlank(imgUrl)) {
-			acountEntity.setImgUrl(imgUrl);
-		}
-
-		if (StringUtils.isNotBlank(nickName)) {
-			acountEntity.setNickName(nickName);
-		}
-
-		if (StringUtils.isNotBlank(phone)) {
-			if (!RegexUtils.checkMobile(phone)) {
-				throw new RRException(ApiResultCode.PHONE_IS_ERROR);
-			}
-			acountEntity.setPhone(phone);
-		}
-
+		Assert.isBlank(acountName, ApiResultCode.ACCOUNT_IS_EMPTY, ApiResultCode.ACCOUNT_IS_EMPTY_CODE);
+		
+		AcountEntity acountEntity = new AcountEntity();
+		acountEntity.setAcountName(acountName);
+		acountEntity.setNickName(nick);
+		acountEntity.setJob(job);
+		acountEntity.setGoodAt(skill);
+		acountEntity.setWorkExprience(experience);
+		acountEntity.setInfomation(information);
+		acountService.updateProfessInformation(acountEntity);
 		return ApiResult.R().setResult(acountEntity);
 	}
 
+	/**
+	 * 重置密码
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/resetPassword")
 	public ApiResult resetPassword(HttpServletRequest request) {
 		//获取参数，判断参数是否合法

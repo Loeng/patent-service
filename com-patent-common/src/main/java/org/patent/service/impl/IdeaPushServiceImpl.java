@@ -30,5 +30,10 @@ public class IdeaPushServiceImpl implements IdeaPushService{
 		return ideaDao.queryMyPushIdeas(acountId);
 	}
 
+	@Override
+	public List<IdeaEntity> queryAllIdeas() {
+		return ideaDao.queryAllIdeas();
+	}
+
 
 }

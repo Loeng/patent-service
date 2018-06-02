@@ -13,4 +13,6 @@ public interface IdeaDao extends BaseDao<IdeaEntity>{
 
 	List<IdeaEntity> queryMyPushIdeas(@Param("acountId") long acountId);
 
+	List<IdeaEntity> queryAllIdeas();
+
 }

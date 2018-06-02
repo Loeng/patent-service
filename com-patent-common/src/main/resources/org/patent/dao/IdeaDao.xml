@@ -5,7 +5,7 @@
 
 	<insert id="inserNewIdea" parameterType="org.patent.entity.IdeaEntity"
 		useGeneratedKeys="true" keyProperty="id">
-			insert into ideas
+		insert into ideas
 		(
 		`acountId`,
 		`title`,
@@ -25,16 +25,20 @@
 		)
 
 	</insert>
-	
+
 	<update id="updateIdeas" parameterType="org.patent.entity.IdeaEntity">
-	
-	
+
+
 	</update>
-	
-	
-	<select id = "queryMyPushIdeas" resultType="org.patent.entity.IdeaEntity">
-	select * from ideas where
+
+
+	<select id="queryMyPushIdeas" resultType="org.patent.entity.IdeaEntity">
+		select * from ideas where
 		acountId=#{acountId}
+	</select>
+
+	<select id="queryAllIdeas" resultType="org.patent.entity.IdeaEntity">
+		select * from ideas
 	</select>
 
 </mapper>

@@ -70,7 +70,8 @@
 		`phone`,
 		`imgUrl`,
 		`lastLongTime`,
-		`createTime`
+		`createTime`,
+		`acountType`
 		)
 		values
 		(
@@ -81,7 +82,8 @@
 		#{phone},
 		#{imgUrl},
 		#{lastLongTime},
-		#{createTime}
+		#{createTime},
+		#{acountType}
 		)
 	</insert>
 
@@ -125,8 +127,21 @@
 	</update>
 
 	<select id="queryProfessByAcountName" resultType="org.patent.entity.AcountEntity">
-		select * from Acount where acountName = #{acountName}
+		select * from
+		Acount where acountName = #{acountName}
 	</select>
+
+	<update id="updateSkillsInformation" parameterType="org.patent.entity.AcountEntity">
+	update Acount
+		<set>
+			<if test="nickName != null"> `nickName`=#{nickName},</if>
+			<if test="job != null"> `job`=#{job},</if>
+			<if test="goodAt != null"> `goodAt`=#{goodAt},</if>
+			<if test="workExprience != null"> `workExprience`=#{workExprience},</if>
+			<if test="infomation != null"> `infomation`=#{infomation}</if>
+		</set>
+		where acountName = #{acountName}
+	</update>
 
 </mapper>
 

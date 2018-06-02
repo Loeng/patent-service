@@ -55,7 +55,7 @@ public class AcountServiceImpl implements AcountService{
 	}
 
 	@Override
-	public AcountEntity registerAcount(String acountName, String password) {
+	public AcountEntity registerAcount(String acountName, String password,String acountType) {
 		//判断账户是否已经注册
 		Assert.isNotNull(acountDao.queryByAcountName(acountName), ApiResultCode.ACCOUNT_IS_REGISTER,ApiResultCode.ACCOUNT_IS_REGISTER_CODE);
 		
@@ -78,6 +78,7 @@ public class AcountServiceImpl implements AcountService{
 		acountEntity.setPassword(new Sha256Hash(password).toHex());
 		acountEntity.setPhone(acountName);
 		acountEntity.setCreateTime(new Date());
+		acountEntity.setAcountType(Integer.parseInt(acountType));
 		acountDao.save(acountEntity); //保存账号
 		return acountEntity;
 	}
@@ -126,6 +127,11 @@ public class AcountServiceImpl implements AcountService{
 	@Override
 	public AcountEntity queryByAcountName(String collectible) {
 		return acountDao.queryProfessByAcountName(collectible);
+	}
+
+	@Override
+	public void updateProfessInformation(AcountEntity acountEntity) {
+		acountDao.updateSkillsInformation(acountEntity);
 	}
 
 }

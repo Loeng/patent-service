@@ -7,7 +7,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.patent.entity.AcountEntity;
+import org.patent.entity.IdeaEntity;
 import org.patent.service.AcountService;
+import org.patent.service.IdeaPushService;
 import org.patent.utils.ApiResult;
 import org.patent.utils.ApiResultCode;
 import org.patent.validator.Assert;
@@ -34,6 +36,9 @@ public class ApiUserSkillsController {
 
 	@Autowired
 	AcountService acountService;
+	
+	@Autowired
+	IdeaPushService ideaPushService;
 
 	/**
 	 * 根据账户类型查询相反类型用户的信息
@@ -52,6 +57,8 @@ public class ApiUserSkillsController {
 		}else {//如果是专业用户，就查询普通用户的信息
 			resutList = acountService.queryByAcountType(1);
 		}
+		List<IdeaEntity> ideaLists = ideaPushService.queryAllIdeas();
+		
 		HashMap<String, Object> resultMap = new HashMap<>();
 		List<HashMap<String, Object>> hashList= new ArrayList<>();
 		if (resutList != null && resutList.size()>0) {
@@ -68,6 +75,16 @@ public class ApiUserSkillsController {
 				hashList.add(hashMap);
 			}
 		}
+		if (ideaLists != null && ideaLists.size() > 0) {
+			for(int i = 0;i<ideaLists.size();i++) {
+				IdeaEntity ideaEntity2 = ideaLists.get(i);
+				HashMap<String, Object> hashMap2 = new HashMap<>();
+				hashMap2.put("ideaTitle", ideaEntity2.getTitle());
+				hashMap2.put("ideaContent",ideaEntity2.getContent());
+				hashList.add(hashMap2);
+			}
+		}
+		
 		resultMap.put("userInfoList", hashList);
 		logger.info("app:{}用户,接口名:{}",new Object[] {acountName,"insertOrUpdateSkills"});
 		return ApiResult.R().setResult(resultMap);

@@ -231,7 +231,7 @@ public class IdeaPushController {
 		List<HashMap<String, Object>> hashList= new ArrayList<>();
 		if (ideaLists != null && ideaLists.size() > 0) {
 			for(int i = 0;i<ideaLists.size();i++) {
-				IdeaEntity ideaEntity2 = new IdeaEntity();
+				IdeaEntity ideaEntity2 = ideaLists.get(i);
 				HashMap<String, Object> hashMap = new HashMap<>();
 				hashMap.put("ideaTitle", ideaEntity2.getTitle());
 				hashMap.put("ideaContent",ideaEntity2.getContent());

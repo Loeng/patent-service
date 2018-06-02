@@ -65,9 +65,10 @@ public interface AcountService {
 	 * 账号注册
 	 * @param acountName 账号
 	 * @param password 密码
+	 * @param acountType 
 	 * @return
 	 */
-	AcountEntity registerAcount(String acountName,String password);
+	AcountEntity registerAcount(String acountName,String password, String acountType);
 	
 	/**
 	 * 账号
@@ -94,5 +95,11 @@ public interface AcountService {
 	 * @return
 	 */
 	AcountEntity queryByAcountName(String collectible);
+
+	/**
+	 * 更新专业用户的技能信息
+	 * @param acountEntity
+	 */
+	void updateProfessInformation(AcountEntity acountEntity);
 	
 }

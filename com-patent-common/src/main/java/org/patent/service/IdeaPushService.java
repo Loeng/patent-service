@@ -16,4 +16,7 @@ public interface IdeaPushService {
 
 	public List<IdeaEntity> queryMyIdeaPushed(String acountName);
 
+	public List<IdeaEntity> queryAllIdeas();
+
+
 }
