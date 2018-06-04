@@ -38,7 +38,7 @@ public class IdeaPushController {
 
 	@Autowired
 	IdeaPushService ideaPushService;
-	
+
 	@Autowired
 	AcountService acountService;
 
@@ -196,10 +196,10 @@ public class IdeaPushController {
 	private ApiResult queryProfessByKeywords(HttpServletRequest request) {
 		String keywords = request.getParameter("keyWords");
 		Assert.isBlank(keywords, ApiResultCode.KEY_WORDS_EMPTY, ApiResultCode.KEY_WORDS_EMPTY_CODE);
-		
+
 		List<AcountEntity> resultList = new ArrayList<>();
 		resultList = acountService.queryList(keywords);
-		
+
 		HashMap<String, Object> resultMap = new HashMap<>();
 		List<HashMap<String, Object>> hashList= new ArrayList<>();
 		if (resultList != null && resultList.size()>0) {
@@ -235,11 +235,48 @@ public class IdeaPushController {
 				HashMap<String, Object> hashMap = new HashMap<>();
 				hashMap.put("ideaTitle", ideaEntity2.getTitle());
 				hashMap.put("ideaContent",ideaEntity2.getContent());
+				hashMap.put("ideaImage", ideaEntity2.getIdeaImage());
 				hashList.add(hashMap);
 			}
 		}
 		resultMap.put("userInfoList", hashList);
 		return ApiResult.R().setResult(resultMap);
 	}
+
+
+	@RequestMapping("/queryAllIdeas")
+	public ApiResult queryAllIdeas(HttpServletRequest request) {
+		List<IdeaEntity> ideaLists = ideaPushService.queryAllIdeas();
+		HashMap<String, Object> resultMap = new HashMap<>();
+		List<HashMap<String, Object>> hashList= new ArrayList<>();
+
+		if (ideaLists != null && ideaLists.size() > 0) {
+			for(int i = 0;i<ideaLists.size();i++) {
+				IdeaEntity ideaEntity2 = ideaLists.get(i);
+				AcountEntity acountEntity = acountService.queryByAcountId(ideaLists.get(i).getAcountId());
+				HashMap<String, Object> hashMap2 = new HashMap<>();
+				hashMap2.put("ideaTitle", ideaEntity2.getTitle());
+				hashMap2.put("ideaContent",ideaEntity2.getContent());
+				hashMap2.put("imgUrl", acountEntity.getImgUrl());
+				hashMap2.put("nickName", acountEntity.getNickName());
+				hashMap2.put("acountName",acountEntity.getAcountName());
+				hashMap2.put("ideaImage", ideaEntity2.getIdeaImage());
+				hashMap2.put("ideaId", ideaEntity2.getId());
+				hashList.add(hashMap2);
+			}
+		}
+		resultMap.put("userInfoList", hashList);
+		return ApiResult.R().setResult(resultMap);
+	}
+
+
+	@RequestMapping("/delectIdeaByAcountId")
+	public ApiResult delectIdeaByAcountId(HttpServletRequest request) {
+		String ideaId = request.getParameter("ideaId");
+		System.out.println("ideaId---------->"+ideaId);
+		ideaPushService.delectByAcountId(ideaId);
+		return ApiResult.R();
+	}
+
 
 }

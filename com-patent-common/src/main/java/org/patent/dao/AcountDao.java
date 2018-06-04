@@ -44,5 +44,7 @@ public interface AcountDao extends BaseDao<AcountEntity>{
 	 * @param acountEntity
 	 */
 	void updateSkillsInformation(AcountEntity acountEntity);
+
+	AcountEntity queryByAcuntId(@Param("acountId") long acountId);
 	
 }

@@ -30,17 +30,8 @@
 	</select>
 
 	<select id="queryByAcountName" resultType="org.patent.entity.AcountEntity">
-		select
-		`acountId`,
-		`acountName`,
-		`nickName`,
-		`password`,
-		`phone`,
-		`imgUrl`,
-		`lastLongTime`,
-		`createTime`,
-		`acountType`
-		from Acount where acountName=#{mobile}
+		select * from Acount
+		where acountName=#{mobile}
 	</select>
 
 
@@ -132,7 +123,7 @@
 	</select>
 
 	<update id="updateSkillsInformation" parameterType="org.patent.entity.AcountEntity">
-	update Acount
+		update Acount
 		<set>
 			<if test="nickName != null"> `nickName`=#{nickName},</if>
 			<if test="job != null"> `job`=#{job},</if>
@@ -142,6 +133,10 @@
 		</set>
 		where acountName = #{acountName}
 	</update>
+
+	<select id="queryByAcuntId" resultType="org.patent.entity.AcountEntity">
+		select * from acount where acountId = #{acountId}
+	</select>
 
 </mapper>
 

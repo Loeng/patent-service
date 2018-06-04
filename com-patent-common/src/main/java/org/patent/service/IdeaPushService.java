@@ -18,5 +18,7 @@ public interface IdeaPushService {
 
 	public List<IdeaEntity> queryAllIdeas();
 
+	public void delectByAcountId(String acountId);
+
 
 }

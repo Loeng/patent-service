@@ -9,6 +9,13 @@ public class IdeaEntity {
 	private String ideaImage;//需求图片url
 	private String ideaFile;//需求文件
 	private Date createTime;//创建时间
+	private long id;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public long getAcountId() {
 		return acountId;
 	}

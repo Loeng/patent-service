@@ -93,7 +93,7 @@ public class ApiAcountController {
 				//专业用户注册
 				hashMap.put("acountType", "2");
 			}
-			
+
 			hashMap.put("acountId", acountEntity.getAcountId());
 			hashMap.put("acountName", acountEntity.getAcountName());
 			hashMap.put("password", acountEntity.getPassword());
@@ -135,6 +135,7 @@ public class ApiAcountController {
 			resultMap.put("nickName", acountEntity.getNickName());
 			resultMap.put("phone", acountEntity.getPhone());
 			resultMap.put("imgUrl", acountEntity.getImgUrl());
+			resultMap.put("acountType", acountEntity.getAcountType());
 			return ApiResult.R().setResult(resultMap);
 		}else {
 			throw new ApiRRException(ApiResultCode.PASSWORD_IS_ERROR, ApiResultCode.PASSWORD_IS_ERROR_CODE);
@@ -213,7 +214,7 @@ public class ApiAcountController {
 		String acountName = request.getParameter("acountName");
 
 		Assert.isBlank(acountName, ApiResultCode.ACCOUNT_IS_EMPTY, ApiResultCode.ACCOUNT_IS_EMPTY_CODE);
-		
+
 		AcountEntity acountEntity = new AcountEntity();
 		acountEntity.setAcountName(acountName);
 		acountEntity.setNickName(nick);
@@ -299,4 +300,21 @@ public class ApiAcountController {
 		acountService.updateHeadImage(acountEntity);
 		return ApiResult.R();
 	}
+
+	@RequestMapping("/querySkillByAcountname")
+	public ApiResult querySkillByAcountName(HttpServletRequest request) {
+		String acountName = request.getParameter("acountName");
+		
+		Assert.isBlank(acountName, ApiResultCode.ACCOUNT_IS_EMPTY, ApiResultCode.ACCOUNT_IS_EMPTY_CODE);
+		
+		AcountEntity acountEntity = acountService.queryByAcountName(acountName);
+		HashMap<String, Object> hashMap = new HashMap<>();
+		hashMap.put("nickName",acountEntity.getNickName());
+		hashMap.put("job",acountEntity.getJob());
+		hashMap.put("goodAt",acountEntity.getGoodAt());
+		hashMap.put("workExprience",acountEntity.getWorkExprience());
+		hashMap.put("infomation",acountEntity.getInfomation());
+		return ApiResult.R().setResult(hashMap);
+	}
+
 }

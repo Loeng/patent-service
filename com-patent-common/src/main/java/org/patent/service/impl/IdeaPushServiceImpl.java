@@ -35,5 +35,10 @@ public class IdeaPushServiceImpl implements IdeaPushService{
 		return ideaDao.queryAllIdeas();
 	}
 
+	@Override
+	public void delectByAcountId(String acountId) {
+		ideaDao.deleteByAcountId(acountId);
+	}
+
 
 }

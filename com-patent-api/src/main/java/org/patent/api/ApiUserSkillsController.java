@@ -55,7 +55,7 @@ public class ApiUserSkillsController {
 		if (acountEntity.getAcountType() == 1) {//如果是普通用户，那么就查询所有专业用户的信息
 			resutList= acountService.queryByAcountType(2);
 		}else {//如果是专业用户，就查询普通用户的信息
-			resutList = acountService.queryByAcountType(1);
+//			resutList = acountService.queryByAcountType(1);
 		}
 		List<IdeaEntity> ideaLists = ideaPushService.queryAllIdeas();
 		
@@ -75,16 +75,6 @@ public class ApiUserSkillsController {
 				hashList.add(hashMap);
 			}
 		}
-		if (ideaLists != null && ideaLists.size() > 0) {
-			for(int i = 0;i<ideaLists.size();i++) {
-				IdeaEntity ideaEntity2 = ideaLists.get(i);
-				HashMap<String, Object> hashMap2 = new HashMap<>();
-				hashMap2.put("ideaTitle", ideaEntity2.getTitle());
-				hashMap2.put("ideaContent",ideaEntity2.getContent());
-				hashList.add(hashMap2);
-			}
-		}
-		
 		resultMap.put("userInfoList", hashList);
 		logger.info("app:{}用户,接口名:{}",new Object[] {acountName,"insertOrUpdateSkills"});
 		return ApiResult.R().setResult(resultMap);

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.patent.dao.AcountDao;
 import org.patent.entity.AcountEntity;
+import org.patent.entity.IdeaEntity;
 import org.patent.service.AcountService;
 import org.patent.utils.ApiRRException;
 import org.patent.utils.ApiResultCode;
@@ -132,6 +133,11 @@ public class AcountServiceImpl implements AcountService{
 	@Override
 	public void updateProfessInformation(AcountEntity acountEntity) {
 		acountDao.updateSkillsInformation(acountEntity);
+	}
+
+	@Override
+	public AcountEntity queryByAcountId(long acountId) {
+		return acountDao.queryByAcuntId(acountId);
 	}
 
 }

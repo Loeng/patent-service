@@ -15,4 +15,6 @@ public interface IdeaDao extends BaseDao<IdeaEntity>{
 
 	List<IdeaEntity> queryAllIdeas();
 
+	void deleteByAcountId(@Param("ideaId") String acountId);
+
 }

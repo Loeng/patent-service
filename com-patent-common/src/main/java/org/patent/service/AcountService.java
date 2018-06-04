@@ -3,6 +3,7 @@ package org.patent.service;
 import java.util.List;
 
 import org.patent.entity.AcountEntity;
+import org.patent.entity.IdeaEntity;
 
 import com.sun.xml.internal.xsom.impl.scd.Iterators.Map;
 
@@ -101,5 +102,12 @@ public interface AcountService {
 	 * @param acountEntity
 	 */
 	void updateProfessInformation(AcountEntity acountEntity);
+
+	/**
+	 * 根据acountId查询用户信息
+	 * @param acountId
+	 * @return
+	 */
+	AcountEntity queryByAcountId(long acountId);
 	
 }

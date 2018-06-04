@@ -33,12 +33,17 @@
 
 
 	<select id="queryMyPushIdeas" resultType="org.patent.entity.IdeaEntity">
-		select * from ideas where
+		select * from ideas
+		where
 		acountId=#{acountId}
 	</select>
 
 	<select id="queryAllIdeas" resultType="org.patent.entity.IdeaEntity">
 		select * from ideas
 	</select>
+
+	<delete id="deleteByAcountId" parameterType="String">
+		delete from ideas where id = #{ideaId}
+	</delete>
 
 </mapper>
