@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.patent.annotation.IgnoreAuth;
 import org.patent.entity.AcountEntity;
 import org.patent.entity.IdeaEntity;
 import org.patent.oss.OSSFactory;
@@ -49,6 +50,7 @@ public class IdeaPushController {
 	 * @param request
 	 * @return
 	 */
+	@IgnoreAuth
 	@RequestMapping("/insertNewIdeas")
 	public ApiResult insertIdeaPush(HttpServletRequest request) {
 		String title = request.getParameter("title");
@@ -84,6 +86,7 @@ public class IdeaPushController {
 	 * @param request
 	 * @return
 	 */
+	@IgnoreAuth
 	@RequestMapping("/uploadImages")
 	public ApiResult uploadImages(@RequestParam("File") CommonsMultipartFile[] fileFiles,
 			HttpServletRequest request) {
@@ -192,6 +195,7 @@ public class IdeaPushController {
 	}
 
 
+	@IgnoreAuth
 	@RequestMapping("/queryProfessByKeyWords")
 	private ApiResult queryProfessByKeywords(HttpServletRequest request) {
 		String keywords = request.getParameter("keyWords");
@@ -220,7 +224,7 @@ public class IdeaPushController {
 		return ApiResult.R().setResult(resultMap);
 	}
 
-
+	@IgnoreAuth
 	@RequestMapping("/queryPUSHIdeaOfMine")
 	public ApiResult queryMyIdeaAll(HttpServletRequest request) {
 		String acountName = request.getParameter("acountId");
@@ -244,6 +248,7 @@ public class IdeaPushController {
 	}
 
 
+	@IgnoreAuth
 	@RequestMapping("/queryAllIdeas")
 	public ApiResult queryAllIdeas(HttpServletRequest request) {
 		List<IdeaEntity> ideaLists = ideaPushService.queryAllIdeas();
@@ -269,7 +274,7 @@ public class IdeaPushController {
 		return ApiResult.R().setResult(resultMap);
 	}
 
-
+	@IgnoreAuth
 	@RequestMapping("/delectIdeaByAcountId")
 	public ApiResult delectIdeaByAcountId(HttpServletRequest request) {
 		String ideaId = request.getParameter("ideaId");

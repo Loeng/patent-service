@@ -2,6 +2,7 @@ package org.patent.api;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.patent.annotation.IgnoreAuth;
 import org.patent.entity.OpinionsEntity;
 import org.patent.service.OpinionService;
 import org.patent.utils.ApiResult;
@@ -21,6 +22,7 @@ public class ApiOpinionsController {
 	@Autowired
 	private OpinionService opinionService;
 
+	@IgnoreAuth
 	@RequestMapping("/writeOrUpdateOption")
 	public ApiResult insertOpisions(HttpServletRequest request) {
 		String acountId = request.getParameter("acountId");

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.patent.annotation.IgnoreAuth;
 import org.patent.entity.AcountEntity;
 import org.patent.entity.IdeaEntity;
 import org.patent.service.AcountService;
@@ -45,6 +46,7 @@ public class ApiUserSkillsController {
 	 * @param request
 	 * @return
 	 */
+	@IgnoreAuth
 	@RequestMapping("/insertOrUpdateUserSkills")
 	public ApiResult insertOrUpdateSkills(HttpServletRequest request) {
 		String acountName = request.getParameter("acountName");

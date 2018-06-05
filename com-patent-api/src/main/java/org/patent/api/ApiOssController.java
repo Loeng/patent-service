@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.patent.annotation.IgnoreAuth;
 import org.patent.entity.SysOssEntity;
 import org.patent.oss.OSSFactory;
 import org.patent.service.SysOssService;
@@ -24,6 +25,7 @@ public class ApiOssController {
 	@Autowired
 	private SysOssService sysOssService;
 	
+	@IgnoreAuth
 	@RequestMapping("/uploadFile")
 	public ApiResult uploadFile(HttpServletRequest request) throws IOException {
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;

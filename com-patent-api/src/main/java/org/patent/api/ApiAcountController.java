@@ -85,8 +85,9 @@ public class ApiAcountController {
 		//判断用户提交的短息验证码是否正确，如果正确，注册用户信息并且返回客户端数据
 		if (smsEntity.getCode().equals(code)) {
 			AcountEntity acountEntity = new AcountEntity(); 
-			HashMap<String, Object> hashMap = new HashMap<>();
 			acountService.registerAcount(mobile, password,acountType);
+			HashMap<String, Object> hashMap = new HashMap<>();
+			acountEntity = acountService.queryByAcountName(mobile);
 			if (acountType.equals("1")) {//普通用户注册
 				hashMap.put("acountType", "1");
 			}else {
@@ -97,6 +98,7 @@ public class ApiAcountController {
 			hashMap.put("acountId", acountEntity.getAcountId());
 			hashMap.put("acountName", acountEntity.getAcountName());
 			hashMap.put("password", acountEntity.getPassword());
+			System.out.println("注册成功后获取的acountId------->"+acountEntity.getAcountId());
 			logger.info("app:{}注册,接口名:{}",new Object[] {mobile,"registerAcount"});
 			return ApiResult.R().setResult(hashMap);
 		}else {
@@ -203,6 +205,7 @@ public class ApiAcountController {
 	 * @param request
 	 * @return
 	 */
+	@IgnoreAuth
 	@RequestMapping("/updateAcount")
 	public ApiResult updateAcountInfo(HttpServletRequest request) {
 		String acountId = request.getParameter("acountId");
@@ -213,8 +216,10 @@ public class ApiAcountController {
 		String information = request.getParameter("information");
 		String acountName = request.getParameter("acountName");
 
+		System.out.println("acoungId------------->"+acountId);
 		Assert.isBlank(acountName, ApiResultCode.ACCOUNT_IS_EMPTY, ApiResultCode.ACCOUNT_IS_EMPTY_CODE);
 
+		Map<String, Object> tokenMap = tokenService.createToken(Long.parseLong(acountId));
 		AcountEntity acountEntity = new AcountEntity();
 		acountEntity.setAcountName(acountName);
 		acountEntity.setNickName(nick);
@@ -223,7 +228,11 @@ public class ApiAcountController {
 		acountEntity.setWorkExprience(experience);
 		acountEntity.setInfomation(information);
 		acountService.updateProfessInformation(acountEntity);
-		return ApiResult.R().setResult(acountEntity);
+		
+		HashMap<String, Object> resultMap = new HashMap<>();
+		resultMap.put("btoken", tokenMap.get("token"));
+		System.out.println("token00--------------->"+tokenMap.get("token"));
+		return ApiResult.R().setResult(resultMap);
 	}
 
 	/**
@@ -231,6 +240,7 @@ public class ApiAcountController {
 	 * @param request
 	 * @return
 	 */
+	@IgnoreAuth
 	@RequestMapping("/resetPassword")
 	public ApiResult resetPassword(HttpServletRequest request) {
 		//获取参数，判断参数是否合法
@@ -270,6 +280,7 @@ public class ApiAcountController {
 	}
 
 
+	@IgnoreAuth
 	@RequestMapping("/updateHeadImage")
 	public ApiResult updateHeadImage(@RequestParam("File") CommonsMultipartFile[] fileFiles,
 			HttpServletRequest request) {
@@ -301,6 +312,7 @@ public class ApiAcountController {
 		return ApiResult.R();
 	}
 
+	@IgnoreAuth
 	@RequestMapping("/querySkillByAcountname")
 	public ApiResult querySkillByAcountName(HttpServletRequest request) {
 		String acountName = request.getParameter("acountName");

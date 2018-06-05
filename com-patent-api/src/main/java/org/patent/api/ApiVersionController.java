@@ -2,6 +2,8 @@ package org.patent.api;
 
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
+
+import org.patent.annotation.IgnoreAuth;
 import org.patent.service.AppversionService;
 import org.patent.utils.ApiResult;
 import org.patent.utils.ApiResultCode;
@@ -22,6 +24,7 @@ public class ApiVersionController {
 	 * @param request
 	 * @return
 	 */
+	@IgnoreAuth
 	@RequestMapping("/cheakVersion")
 	public ApiResult checkVersion(HttpServletRequest request) {
 		String versioncode = request.getParameter("versionCode");

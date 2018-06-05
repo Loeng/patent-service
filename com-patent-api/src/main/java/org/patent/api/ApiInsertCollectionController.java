@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.patent.annotation.IgnoreAuth;
 import org.patent.entity.AcountEntity;
 import org.patent.entity.CollectionEntity;
 import org.patent.service.AcountService;
@@ -32,6 +33,7 @@ public class ApiInsertCollectionController {
 	 * @param request
 	 * @return
 	 */
+	@IgnoreAuth
 	@RequestMapping("/insertCollection")
 	public ApiResult insertCollections(HttpServletRequest request) {
 		String collectible = request.getParameter("collectible");
@@ -51,6 +53,7 @@ public class ApiInsertCollectionController {
 	 * @param request
 	 * @return
 	 */
+	@IgnoreAuth
 	@RequestMapping("/cancleCollection")
 	public ApiResult cancleCollection(HttpServletRequest request) {
 		String collectible = request.getParameter("collectible");
@@ -69,6 +72,7 @@ public class ApiInsertCollectionController {
 	 * @param request
 	 * @return
 	 */
+	@IgnoreAuth
 	@RequestMapping("/queryCollections")
 	public ApiResult queryCollection(HttpServletRequest request) {
 		String collectible = request.getParameter("collectibleAcount");
@@ -94,6 +98,7 @@ public class ApiInsertCollectionController {
 	 * @param request
 	 * @return
 	 */
+	@IgnoreAuth
 	@RequestMapping("/queryCollectionsOfMine")
 	public ApiResult queryAllMyCollections(HttpServletRequest request) {
 		String acountName = request.getParameter("acountName");
